@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #F8F4EE;
+    --color-text: #191716;
+    --color-plum: #593649;
+    --color-olive: #686B46;
+    --color-alabaster: #F6EFE5;
+    --grid-line-color: rgba(89, 54, 73, 0.08);
+  }
+
+  .dark {
+    --color-bg: #141312;
+    --color-text: #F6EFE5;
+    --color-plum: #9E6585;
+    --color-olive: #989B6D;
+    --color-alabaster: #201E1D;
+    --grid-line-color: rgba(246, 239, 229, 0.06);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Mobius Grid Lines Overlay */
+.mobius-grid-active {
+  background-size: 80px 80px;
+  background-image: 
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+}
+
+/* Subtle Film Grain */
+.bg-grain {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #59364955;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #59364999;
+}
