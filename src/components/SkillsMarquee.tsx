@@ -113,7 +113,7 @@ export const SkillsMarquee: React.FC = () => {
           </div>
 
           {/* Active Category Skills Grid (8 cols) */}
-          <div className="lg:col-span-8 p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10 shadow-xs">
+          <div className="lg:col-span-8 p-6 sm:p-8 rounded-3xl bg-white/85 dark:bg-[#1D181B] border border-[#543244]/15 dark:border-white/10 shadow-xs">
             <div className="flex items-center justify-between pb-4 border-b border-neutral-100 dark:border-neutral-800 mb-6">
               <h3 className="font-serif text-2xl font-semibold text-[#543244] dark:text-[#F7F2EA]">
                 {portfolioData.skills[activeCategory].title}

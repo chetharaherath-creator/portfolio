@@ -61,7 +61,7 @@ export const StoryAndLeadership: React.FC = () => {
           {/* Right Column: Credentials & Leadership (5 cols) */}
           <div className="lg:col-span-5 space-y-7">
             {/* Certifications Card */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-white/80 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10 shadow-xs">
+            <div className="p-6 sm:p-7 rounded-3xl bg-white/85 dark:bg-[#1D181B] border border-[#543244]/15 dark:border-white/10 shadow-xs">
               <h3 className="font-serif text-xl font-semibold text-[#543244] dark:text-[#EFE7DB] mb-4 flex items-center gap-2">
                 <Award className="w-5 h-5 text-[#656744]" />
                 <span>Verified Credentials</span>

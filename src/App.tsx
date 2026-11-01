@@ -22,7 +22,7 @@ export function App() {
   }, [darkMode]);
 
   return (
-    <div className={`min-h-screen relative font-sans ${gridActive ? 'mobius-grid-active' : ''}`}>
+    <div className={`min-h-screen relative font-sans bg-[#F7F2EA] dark:bg-[#121011] text-[#241E22] dark:text-[#F4EFEA] transition-colors duration-300 ${gridActive ? 'mobius-grid-active' : ''}`}>
       {/* Möbius Alignment Grid Overlay (Ctrl+G) */}
       <GridOverlay visible={gridActive} onToggle={() => setGridActive(!gridActive)} />
 

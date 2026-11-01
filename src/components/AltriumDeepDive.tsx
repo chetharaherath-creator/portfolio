@@ -70,7 +70,7 @@ export const AltriumDeepDive: React.FC = () => {
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
               >
                 {/* Sprint 2 Lead Card (7 cols) */}
-                <div className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white/80 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10 shadow-xs flex flex-col justify-between">
+                <div className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white/85 dark:bg-[#1D181B] border border-[#543244]/15 dark:border-white/10 shadow-xs flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-4">
                       <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#656744]/15 text-[#656744] border border-[#656744]/25 uppercase">
@@ -190,7 +190,7 @@ export const AltriumDeepDive: React.FC = () => {
                 transition={{ duration: 0.2 }}
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
               >
-                <div className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white/80 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10 shadow-xs flex flex-col justify-between">
+                <div className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white/85 dark:bg-[#1D181B] border border-[#543244]/15 dark:border-white/10 shadow-xs flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-4">
                       <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#543244]/15 text-[#543244] dark:text-[#EFE7DB] border border-[#543244]/25 uppercase">

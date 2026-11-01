@@ -91,7 +91,7 @@ export const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Contact Details (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-7 rounded-3xl bg-white/80 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10 shadow-xs space-y-4">
+            <div className="p-6 sm:p-7 rounded-3xl bg-white/85 dark:bg-[#1D181B] border border-[#543244]/15 dark:border-white/10 shadow-xs space-y-4">
               <h3 className="font-serif text-xl font-semibold text-[#543244] dark:text-[#EFE7DB]">
                 Direct Contacts
               </h3>
@@ -203,7 +203,7 @@ export const ContactSection: React.FC = () => {
           </div>
 
           {/* Form (7 cols) */}
-          <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white/80 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10 shadow-xs">
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white/85 dark:bg-[#1D181B] border border-[#543244]/15 dark:border-white/10 shadow-xs">
             <h3 className="font-serif text-2xl font-semibold text-[#543244] dark:text-[#EFE7DB] mb-2">
               Send a Message
             </h3>

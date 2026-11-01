@@ -41,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div
           className={`mx-auto max-w-7xl flex items-center justify-between px-5 py-3 rounded-full transition-all duration-300 border ${
             scrolled
-              ? 'bg-[#F7F2EA]/90 dark:bg-[#1A1618]/90 backdrop-blur-md shadow-sm border-[#543244]/15 dark:border-white/10'
+              ? 'bg-[#F7F2EA]/90 dark:bg-[#1A1618]/95 backdrop-blur-md shadow-sm border-[#543244]/15 dark:border-white/10'
               : 'bg-transparent border-transparent'
           }`}
         >

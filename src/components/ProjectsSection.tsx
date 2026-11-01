@@ -61,7 +61,7 @@ export const ProjectsSection: React.FC = () => {
               transition={{ duration: 0.25, delay: index * 0.04 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               onClick={() => setSelectedProject(project)}
-              className="cursor-pointer group flex flex-col justify-between rounded-3xl p-6 sm:p-7 bg-white/85 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#543244]/40 transition-all relative overflow-hidden"
+              className="cursor-pointer group flex flex-col justify-between rounded-3xl p-6 sm:p-7 bg-white/85 dark:bg-[#1D181B] border border-[#543244]/15 dark:border-white/10 shadow-xs hover:shadow-md hover:border-[#543244]/40 dark:hover:border-[#CE8CAE]/40 transition-all relative overflow-hidden"
             >
               {/* Subtle top accent */}
               <div
@@ -128,7 +128,7 @@ export const ProjectsSection: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-2xl bg-[#F7F2EA] dark:bg-[#201B1E] rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#543244]/20 dark:border-white/15 my-8 max-h-[90vh] overflow-y-auto"
+                className="relative w-full max-w-2xl bg-[#F7F2EA] dark:bg-[#1D181B] rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#543244]/20 dark:border-white/15 my-8 max-h-[90vh] overflow-y-auto"
               >
                 <button
                   onClick={() => setSelectedProject(null)}
