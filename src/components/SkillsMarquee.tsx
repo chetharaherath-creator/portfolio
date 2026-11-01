@@ -154,3 +154,4 @@ export const SkillsMarquee: React.FC = () => {
     </section>
   );
 };
+

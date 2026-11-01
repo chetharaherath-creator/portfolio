@@ -303,3 +303,4 @@ export const portfolioData = {
     { name: "English", proficiency: "Professional Working Proficiency" },
   ]
 };
+

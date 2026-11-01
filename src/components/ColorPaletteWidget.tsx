@@ -93,3 +93,4 @@ export const ColorPaletteWidget: React.FC = () => {
     </div>
   );
 };
+

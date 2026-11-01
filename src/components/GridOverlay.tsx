@@ -66,3 +66,4 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({ visible, onToggle }) =
     </AnimatePresence>
   );
 };
+

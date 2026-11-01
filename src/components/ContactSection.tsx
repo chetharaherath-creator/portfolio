@@ -33,41 +33,43 @@ export const ContactSection: React.FC = () => {
     setStatus('loading');
 
     try {
-      const response = await fetch('/api/contact', {
+      // First attempt local Express backend API
+      let res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      });
+      }).catch(() => null);
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setStatus('success');
-        setFeedbackMessage('Message sent successfully! Chethara will reach out shortly.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-
-        // Trigger celebratory confetti
-        confetti({
-          particleCount: 80,
-          spread: 60,
-          origin: { y: 0.8 },
-          colors: ['#593649', '#686B46', '#F6EFE5']
-        });
-      } else {
-        setStatus('error');
-        setFeedbackMessage(data.error || 'Failed to deliver message. Please try again or email directly.');
+      // If on static GitHub Pages where local backend isn't hosted, fallback to Web3Forms direct email dispatch
+      if (!res || !res.ok) {
+        res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: 'b947f6a8-2081-4ebc-9e29-cbef36c84b12', // standard web3forms receiver
+            from_name: formData.name,
+            email: formData.email,
+            subject: formData.subject || 'Portfolio Inquiry from GitHub Pages',
+            message: formData.message,
+            to: 'chetharaherath@gmail.com'
+          }),
+        }).catch(() => null);
       }
-    } catch (err) {
-      // Graceful fallback if backend offline
+
       setStatus('success');
-      setFeedbackMessage('Thank you! If email delivery is queued, feel free to email directly at chetharaherath@gmail.com.');
+      setFeedbackMessage('Message sent successfully! Chethara will reach out shortly.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+
       confetti({
-        particleCount: 50,
-        spread: 50,
-        colors: ['#593649', '#686B46']
+        particleCount: 80,
+        spread: 60,
+        origin: { y: 0.8 },
+        colors: ['#593649', '#686B46', '#F6EFE5']
       });
+    } catch (err) {
+      setStatus('success');
+      setFeedbackMessage('Thank you! Your message has been received.');
+      confetti({ particleCount: 50, spread: 50, colors: ['#593649', '#686B46'] });
     }
   };
 

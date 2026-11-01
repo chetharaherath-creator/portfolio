@@ -43,3 +43,4 @@ npm run dev
 npm run build
 ```
 The output will be generated inside the `dist/` directory, ready to be deployed to Vercel, Netlify, or GitHub Pages.
+
