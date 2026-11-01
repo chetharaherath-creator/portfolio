@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { ColorPaletteWidget } from './components/ColorPaletteWidget';
 import { AltriumDeepDive } from './components/AltriumDeepDive';
 import { ProjectsSection } from './components/ProjectsSection';
 import { SkillsMarquee } from './components/SkillsMarquee';
@@ -24,7 +23,7 @@ export function App() {
 
   return (
     <div className={`min-h-screen relative font-sans ${gridActive ? 'mobius-grid-active' : ''}`}>
-      {/* Möbius Easter Egg Grid Overlay */}
+      {/* Möbius Alignment Grid Overlay (Ctrl+G) */}
       <GridOverlay visible={gridActive} onToggle={() => setGridActive(!gridActive)} />
 
       {/* Floating Header */}
@@ -35,14 +34,9 @@ export function App() {
         setGridActive={setGridActive}
       />
 
-      {/* Main Page Flow */}
+      {/* Main Sections */}
       <main className="relative">
         <Hero />
-        
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <ColorPaletteWidget />
-        </div>
-
         <AltriumDeepDive />
         <ProjectsSection />
         <SkillsMarquee />
@@ -57,4 +51,3 @@ export function App() {
 }
 
 export default App;
-

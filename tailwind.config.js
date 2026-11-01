@@ -9,32 +9,29 @@ export default {
     extend: {
       colors: {
         pantone: {
-          alabaster: '#F6EFE5',
+          alabaster: '#F7F2EA',
           'alabaster-light': '#FDFBF7',
-          'alabaster-dark': '#E8DED0',
-          plum: '#593649',
-          'plum-light': '#744760',
-          'plum-dark': '#3F2433',
-          olive: '#686B46',
-          'olive-light': '#7C7F53',
+          'alabaster-muted': '#EFE7DB',
+          plum: '#543244',
+          'plum-light': '#6E435B',
+          'plum-dark': '#3C1F2F',
+          olive: '#656744',
+          'olive-light': '#7B7E55',
           'olive-dark': '#4F5234',
         },
-        obsidian: {
-          900: '#121110',
-          800: '#1A1816',
-          700: '#252220',
-          600: '#34302C',
+        charcoal: {
+          900: '#1A1618',
+          800: '#262024',
+          700: '#3D343A',
         }
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        display: ['Syne', 'sans-serif'],
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Times New Roman', 'serif'],
+        sans: ['"Roboto Flex"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'marquee': 'marquee 35s linear infinite',
         'marquee-reverse': 'marquee-reverse 35s linear infinite',
-        'pulse-subtle': 'pulseSubtle 4s ease-in-out infinite',
       },
       keyframes: {
         marquee: {
@@ -45,10 +42,6 @@ export default {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0%)' },
         },
-        pulseSubtle: {
-          '0%, 100%': { opacity: '0.4' },
-          '50%': { opacity: '0.8' },
-        }
       }
     },
   },

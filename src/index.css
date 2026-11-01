@@ -4,56 +4,54 @@
 
 @layer base {
   :root {
-    --color-bg: #F8F4EE;
-    --color-text: #191716;
-    --color-plum: #593649;
-    --color-olive: #686B46;
-    --color-alabaster: #F6EFE5;
-    --grid-line-color: rgba(89, 54, 73, 0.08);
+    --color-bg: #F7F2EA;
+    --color-text: #262024;
+    --color-plum: #543244;
+    --color-olive: #656744;
+    --color-alabaster: #F7F2EA;
+    --grid-line-color: rgba(84, 50, 68, 0.08);
   }
 
   .dark {
-    --color-bg: #141312;
-    --color-text: #F6EFE5;
-    --color-plum: #9E6585;
-    --color-olive: #989B6D;
-    --color-alabaster: #201E1D;
-    --grid-line-color: rgba(246, 239, 229, 0.06);
+    --color-bg: #1A1618;
+    --color-text: #F7F2EA;
+    --color-plum: #B87C9E;
+    --color-olive: #9EA272;
+    --color-alabaster: #262024;
+    --grid-line-color: rgba(247, 242, 234, 0.08);
   }
 
   body {
     background-color: var(--color-bg);
     color: var(--color-text);
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: "Roboto Flex", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
   }
 }
 
 /* Mobius Grid Lines Overlay */
 .mobius-grid-active {
-  background-size: 80px 80px;
+  background-size: 72px 72px;
   background-image: 
     linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
 }
 
-/* Subtle Film Grain */
-.bg-grain {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #59364955;
+  background: #54324444;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #59364999;
+  background: #54324488;
 }
-
