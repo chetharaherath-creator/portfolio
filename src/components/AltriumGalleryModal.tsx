@@ -111,7 +111,7 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                 Performance Tracker for Altrium
               </h2>
               <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-light mt-0.5">
-                3-Quarter Staggered Review Engine • 4-Tier Privacy • React, Next.js & MySQL
+                React 19 & Vite • Node.js (Express 5) • MySQL & Sequelize • JWT, Bcrypt & Multer
               </p>
             </div>
 
@@ -220,15 +220,53 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                 </p>
               </div>
 
-              {/* Pillar 2: 4-Tier Hierarchical Privacy */}
-              <div className="p-4 rounded-2xl bg-white dark:bg-white/5 border border-[#656744]/20 space-y-1.5">
-                <span className="text-[10px] font-mono uppercase font-bold text-[#543244] dark:text-[#E8A5C5] flex items-center gap-1">
-                  <Users className="w-3.5 h-3.5" />
-                  4-Tier Role-Based Security
-                </span>
-                <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
-                  Strict top-down isolation: <strong>Employees</strong> cannot see peer data; <strong>Team Managers</strong> oversee direct reports; <strong>Department Managers</strong> monitor their department; and <strong>HR</strong> holds blind oversight (tracks compliance without reading confidential text).
-                </p>
+              {/* Pillar 2: 6 Defined Access Levels in User.js */}
+              <div className="p-4 rounded-2xl bg-white dark:bg-white/5 border border-[#656744]/20 space-y-1.5 md:col-span-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-mono uppercase font-bold text-[#543244] dark:text-[#E8A5C5] flex items-center gap-1">
+                    <Users className="w-3.5 h-3.5" />
+                    6 Defined Access Levels & Roles (User.js)
+                  </span>
+                  <span className="text-[10px] font-mono text-neutral-400">Sequelize Model Architecture</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 pt-1">
+                  <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/70 dark:border-white/5">
+                    <strong className="text-xs font-semibold text-[#543244] dark:text-[#E8A5C5] block">1. Admin</strong>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400 font-light block mt-0.5">
+                      Manage members, accounts, and employee password credentials.
+                    </span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/70 dark:border-white/5">
+                    <strong className="text-xs font-semibold text-[#656744] dark:text-[#B5BC7E] block">2. Operational Manager</strong>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400 font-light block mt-0.5">
+                      Operational governance, review workflows, plans, and reports.
+                    </span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/70 dark:border-white/5">
+                    <strong className="text-xs font-semibold text-[#543244] dark:text-[#E8A5C5] block">3. HR Manager</strong>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400 font-light block mt-0.5">
+                      Assign reviews, manage tasks, and view compliance completion reports.
+                    </span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/70 dark:border-white/5">
+                    <strong className="text-xs font-semibold text-[#656744] dark:text-[#B5BC7E] block">4. Department Manager</strong>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400 font-light block mt-0.5">
+                      Assign reviews/plans, inspect department reports & review records.
+                    </span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/70 dark:border-white/5">
+                    <strong className="text-xs font-semibold text-[#543244] dark:text-[#E8A5C5] block">5. Team Manager</strong>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400 font-light block mt-0.5">
+                      Assign reviews/plans for direct subordinates, access team review records.
+                    </span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/70 dark:border-white/5">
+                    <strong className="text-xs font-semibold text-[#656744] dark:text-[#B5BC7E] block">6. Employee</strong>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400 font-light block mt-0.5">
+                      View & complete assigned self/peer reviews, tasks, and reports.
+                    </span>
+                  </div>
+                </div>
               </div>
 
               {/* Pillar 3: 2-Quarter PIP Loop */}
@@ -238,7 +276,7 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                   The 2-Quarter Actionable PIP Loop
                 </span>
                 <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
-                  Peer skill gaps trigger database alerts for managers to issue time-bound Personal Improvement Plans (PIPs). Employees have exactly 2 quarters to complete milestones, with flexible PDPs available for general career advancement.
+                  Peer skill gaps trigger database alerts for managers to issue time-bound Personal Improvement Plans (PIPs). Employees have exactly 2 quarters to complete milestones and submit evidence via Multer, with flexible PDPs available for ongoing development.
                 </p>
               </div>
 
@@ -249,9 +287,21 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                   Financial Year Rollover & Carry-Over
                 </span>
                 <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
-                  HR-triggered rollover archives completed reviews into a permanent historical database. For employees on Q3 PIPs crossing year boundaries, the engine seamlessly carries over active deadlines into the new year.
+                  HR-triggered rollover archives completed reviews into a permanent historical MySQL database. For employees on Q3 PIPs crossing year boundaries, the engine seamlessly carries over active deadlines into the new financial year.
                 </p>
               </div>
+            </div>
+
+            {/* Codebase Implementation & Routing Architecture Note */}
+            <div className="p-4 rounded-2xl bg-[#543244]/5 dark:bg-white/[0.02] border border-[#543244]/15 dark:border-white/10 space-y-2">
+              <span className="text-xs font-mono font-bold text-[#543244] dark:text-[#E8A5C5] uppercase flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5" />
+                <span>Codebase Architecture & Route Wiring</span>
+              </span>
+              <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
+                <strong>Backend & Data Layer:</strong> The REST API controllers and MySQL connection are orchestrated in <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">server.js</code>, with models defined via Sequelize in <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">User.js</code>. Authentication relies on JWT tokens and bcrypt password hashing, with multipart evidence attachments handled by Multer.<br />
+                <strong>Routing & Access Observation:</strong> Route protection and client navigation are coordinated between <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">App.jsx</code> and <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">Sidebar.jsx</code>. While six roles are defined, navigational access reflects distinct route-grouping behaviors across views.
+              </p>
             </div>
 
             {/* Chethara's Agile Leadership Reflection */}
@@ -260,20 +310,20 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                 Individual Reflection & Team Facilitation (Chethara Herath)
               </span>
               <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
-                <strong>Sprint 1 (Developer & Business Analyst)</strong>: Formulated technology stack (React, Next.js, MySQL), drafted comprehensive user stories with acceptance criteria, and created UML class/sequence models.<br />
-                <strong>Sprint 2 (Scrum Master)</strong>: Facilitated physical daily scrums and tracked sprint burndown metrics. Acting as the team's <em>Belbin Shaper & Coordinator</em>, applied McGregor's motivational principles to guide the team from Tuckman's <em>storming</em> phase to <em>performing</em>, achieving <strong>100% on-time backlog delivery</strong> with zero critical bugs.
+                <strong>Sprint 1 (Developer & Business Analyst)</strong>: Formulated technology stack (React 19, Vite, Express 5, MySQL/Sequelize), drafted product backlog, user stories with acceptance criteria, and UML models.<br />
+                <strong>Sprint 2 (Scrum Master)</strong>: Facilitated daily scrums and tracked sprint burndown velocity. Acting as the team's <em>Belbin Shaper & Coordinator</em>, applied McGregor's motivational principles to guide the team from Tuckman's <em>storming</em> phase to <em>performing</em>, achieving <strong>100% on-time backlog delivery</strong>.
               </p>
             </div>
           </div>
 
           {/* Modal Footer */}
-          <div className="mt-8 pt-4 border-t border-[#543244]/15 dark:border-white/10 flex items-center justify-between">
+          <div className="mt-8 pt-4 border-t border-[#543244]/15 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <span className="text-xs font-mono text-neutral-500">
-              Technology Stack: React • Next.js • MySQL • Tailwind CSS
+              Stack: React 19 • Vite • Node.js Express 5 • MySQL (Sequelize) • Tailwind CSS • JWT & Multer
             </span>
             <button
               onClick={onClose}
-              className="px-6 py-2.5 rounded-full bg-[#656744] hover:bg-[#4E5032] text-white text-xs font-mono font-bold transition-colors shadow-sm"
+              className="px-6 py-2.5 rounded-full bg-[#656744] hover:bg-[#4E5032] text-white text-xs font-mono font-bold transition-colors shadow-sm self-start sm:self-auto"
             >
               Close Inspection
             </button>

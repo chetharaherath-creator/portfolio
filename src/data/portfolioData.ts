@@ -43,15 +43,16 @@ export const portfolioData = {
     {
       id: "altrium-performance-tracker",
       title: "Performance Tracker for Altrium",
-      subtitle: "Enterprise Agile Team Metrics & Velocity Hub",
+      subtitle: "Web-Based Employee Performance & Development System",
       category: "Enterprise Full-Stack",
-      tags: ["React", "Next.js", "MySQL", "Tailwind CSS", "Agile / Scrum"],
-      description: "A 4-month enterprise client software project built for Altrium across two rigorous Agile sprints. Architected to monitor engineering progress, sprint burndown velocity, and team delivery analytics.",
+      tags: ["React 19", "Vite", "Node.js (Express 5)", "MySQL (Sequelize)", "Tailwind CSS", "JWT & Multer"],
+      description: "A secure, web-based employee performance and development tracker built for Altrium. Supports assigning and completing reviews, managing performance improvement plans (PIPs), submitting evidence deliverables, viewing reports and history archives, and administering user accounts across 6 defined access levels.",
       highlights: [
-        "Served as Developer & Business Analyst in Sprint 1, and elected Scrum Master in Sprint 2",
-        "Formulated the core technology stack and scalable client-server foundations with Next.js and MySQL",
-        "Authored comprehensive product backlogs, user stories, acceptance criteria, and UML architectural diagrams",
-        "Coordinated team sprint reviews, burndown audits, blocker resolution, and continuous integration"
+        "Frontend built with React 19, Vite, React Router, Axios, and Tailwind CSS design tokens",
+        "Robust REST API powered by Node.js with Express 5, connecting to MySQL via Sequelize ORM (server.js)",
+        "Secure JWT-based authentication, bcrypt password hashing, and Multer file upload pipelines for evidence submissions",
+        "Granular 6-role permission system defined in User.js (Admin, Operational Manager, HR Manager, Department Manager, Team Manager, Employee)",
+        "Served as Developer & Business Analyst in Sprint 1, and elected Scrum Master in Sprint 2 (100% on-time delivery)"
       ],
       role: "Scrum Master & Full-Stack Developer",
       duration: "4 Months • 2 Sprints",

@@ -299,10 +299,10 @@ export const AltriumDeepDive: React.FC = () => {
                     FE
                   </div>
                   <h4 className="font-serif text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
-                    React + Tailwind
+                    React 19 + Vite
                   </h4>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
-                    Modular components, responsive sprint dashboards, and clean typography.
+                    React 19, React Router, Axios, and Tailwind CSS design tokens for fluid navigation and responsive layouts.
                   </p>
                 </div>
 
@@ -311,10 +311,10 @@ export const AltriumDeepDive: React.FC = () => {
                     BE
                   </div>
                   <h4 className="font-serif text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
-                    Node.js & Express
+                    Node.js & Express 5
                   </h4>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
-                    REST APIs handling sprint data telemetry, metrics, and team status.
+                    Express 5 REST controllers wired in server.js routing reviews, tasks, plans, and reports.
                   </p>
                 </div>
 
@@ -323,22 +323,22 @@ export const AltriumDeepDive: React.FC = () => {
                     DB
                   </div>
                   <h4 className="font-serif text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
-                    MySQL Database
+                    MySQL via Sequelize
                   </h4>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
-                    Normalized relational schema with foreign key constraints across sprints.
+                    Sequelize ORM mapping 6 distinct user roles in User.js, review relations, and historical archives.
                   </p>
                 </div>
 
                 <div className="p-6 rounded-3xl bg-white/80 dark:bg-[#201B1E] border border-[#543244]/15 dark:border-white/10">
                   <div className="w-9 h-9 rounded-xl bg-[#656744]/15 text-[#656744] flex items-center justify-center font-bold text-xs mb-4">
-                    AG
+                    SEC
                   </div>
                   <h4 className="font-serif text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
-                    Scrum Methodologies
+                    JWT, Bcrypt & Multer
                   </h4>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
-                    Burndown charts, daily syncs, retrospectives, and code review standards.
+                    JWT authentication, bcrypt password hashing, and Multer multipart pipelines for evidence file uploads.
                   </p>
                 </div>
               </motion.div>
