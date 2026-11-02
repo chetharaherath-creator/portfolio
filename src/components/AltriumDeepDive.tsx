@@ -21,7 +21,7 @@ export const AltriumDeepDive: React.FC = () => {
               Performance Tracker for Altrium
             </h2>
             <p className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-light">
-              A 4-month client project developed across two rigorous Agile sprints. Combining business analysis, full-stack React/Node.js implementation, and Scrum Master facilitation.
+              A secure web-based employee performance and development tracker built for Altrium. Developed across two Agile sprints to support review assignments, 2-quarter PIP loops, Multer evidence submissions, compliance reports, and 6-role account administration.
             </p>
           </div>
 
@@ -86,7 +86,7 @@ export const AltriumDeepDive: React.FC = () => {
                     </h3>
 
                     <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed font-light">
-                      Elected Scrum Master for the critical final sprint. Led cross-functional alignment, cleared engineering bottlenecks, ran daily standups, and tracked team velocity towards on-schedule delivery.
+                      Elected Scrum Master for Sprint 2. Led cross-functional alignment, cleared engineering bottlenecks, organized physical collaboration sessions, and guided the team to 100% on-time backlog completion.
                     </p>
 
                     <div className="mt-6 space-y-3.5">
@@ -94,10 +94,10 @@ export const AltriumDeepDive: React.FC = () => {
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
-                            Daily Standups & Impediment Removal
+                            Physical Collaboration & Daily Scrums
                           </strong>
                           <span className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
-                            Balanced developer workloads, identified blockers early, and maintained sprint momentum.
+                            Transitioned team from isolated remote work to in-person collaborative sessions, eliminating delays and reviewing each other's work with zero blockers.
                           </span>
                         </div>
                       </div>
@@ -106,10 +106,10 @@ export const AltriumDeepDive: React.FC = () => {
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
-                            Sprint Reviews, Demos & Burndown Tracking
+                            Tuckman's Team Dynamics (Storming → Performing)
                           </strong>
                           <span className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
-                            Presented milestone demonstrations for Altrium evaluators and monitored story-point completion metrics.
+                            Applied Tuckman's 5 stages of group development, actively coaching the team through the early storming phase into a cohesive, high-velocity norming and performing unit.
                           </span>
                         </div>
                       </div>
@@ -118,10 +118,10 @@ export const AltriumDeepDive: React.FC = () => {
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
-                            Definition of Done (DoD) & Code Reviews
+                            McGregor's Motivation & Belbin Shaper Role
                           </strong>
                           <span className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
-                            Enforced responsive design compliance and clean pull requests across the repository.
+                            Applied McGregor's Theory X and Theory Y motivational frameworks to maintain team accountability and complete remaining core features carried over from Sprint 1.
                           </span>
                         </div>
                       </div>
@@ -157,8 +157,8 @@ export const AltriumDeepDive: React.FC = () => {
 
                       <div className="p-4 rounded-2xl bg-white/10 border border-white/10">
                         <div className="flex items-center justify-between text-xs font-mono mb-1 text-[#EFE7DB]">
-                          <span>ACCEPTANCE CRITERIA</span>
-                          <span className="text-emerald-300 font-medium">Fully Passed</span>
+                          <span>TEAM DYNAMICS PROGRESSION</span>
+                          <span className="text-emerald-300 font-medium">Storming → Performing</span>
                         </div>
                         <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
                           <div className="bg-[#656744] h-full w-full rounded-full" />
@@ -167,10 +167,10 @@ export const AltriumDeepDive: React.FC = () => {
 
                       <div className="p-4 rounded-2xl bg-white/10 border border-white/10">
                         <div className="text-xs font-mono text-[#EFE7DB] mb-1">
-                          CEREMONIES FACILITATED
+                          GOVERNANCE & CEREMONIES
                         </div>
-                        <div className="text-xs text-white/80 font-light">
-                          Sprint Planning, Daily Scrum, Backlog Refinement, Stakeholder Demo, Retrospective.
+                        <div className="text-xs text-white/80 font-light leading-relaxed">
+                          Physical Daily Scrums, Retrospectives, Blocker Resolution, Cross-Review Verification, and Product Owner Demo.
                         </div>
                       </div>
                     </div>
@@ -196,7 +196,7 @@ export const AltriumDeepDive: React.FC = () => {
                   <div>
                     <div className="flex items-center gap-2 mb-4">
                       <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#543244]/15 text-[#543244] dark:text-[#EFE7DB] border border-[#543244]/25 uppercase">
-                        Foundation & Design
+                        Foundation & Requirements
                       </span>
                       <span className="text-xs font-mono text-neutral-400">Sprint 01</span>
                     </div>
@@ -206,7 +206,7 @@ export const AltriumDeepDive: React.FC = () => {
                     </h3>
 
                     <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed font-light">
-                      Established product requirements and system foundation for the Altrium platform. Extracted client requirements, authored user stories, and engineered core React UI components.
+                      In Sprint 1, formulated the core technology stack and established the product foundation. Clarified ambiguities with the Product Owner, authored user stories with acceptance criteria, and designed UML models before initiating code implementation.
                     </p>
 
                     <div className="mt-6 space-y-3.5">
@@ -214,10 +214,10 @@ export const AltriumDeepDive: React.FC = () => {
                         <FileText className="w-4 h-4 text-[#543244] dark:text-[#D19BB8] shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
-                            Backlog & Acceptance Criteria
+                            Tech Stack Formulation & Groundwork
                           </strong>
                           <span className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
-                            Drafted structured user stories with acceptance criteria to guarantee engineering clarity.
+                            Selected and justified the technical stack (React 19, Vite, Tailwind CSS, Express 5, MySQL via Sequelize, JWT, Multer) and initiated product scaffolding.
                           </span>
                         </div>
                       </div>
@@ -226,10 +226,10 @@ export const AltriumDeepDive: React.FC = () => {
                         <Layers className="w-4 h-4 text-[#543244] dark:text-[#D19BB8] shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
-                            UML Architectural Models
+                            Product Backlog & PO Clarifications
                           </strong>
                           <span className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
-                            Designed Use Case and Class Diagrams outlining database entities and API data flows.
+                            Brainstormed company requirements with QA and the Product Owner, authoring a structured product backlog with user stories and testable acceptance criteria.
                           </span>
                         </div>
                       </div>
@@ -238,10 +238,10 @@ export const AltriumDeepDive: React.FC = () => {
                         <GitPullRequest className="w-4 h-4 text-[#543244] dark:text-[#D19BB8] shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
-                            React & Tailwind Component Scaffolding
+                            UML Diagrams & Sprint Documentation
                           </strong>
                           <span className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
-                            Implemented modular UI components and connected client state management.
+                            Authored Use Case and Class diagrams mapping database entities in User.js, and authored the comprehensive Sprint 1 specification document.
                           </span>
                         </div>
                       </div>
@@ -249,7 +249,7 @@ export const AltriumDeepDive: React.FC = () => {
                   </div>
 
                   <div className="mt-8 pt-4 border-t border-neutral-200 dark:border-neutral-800 text-xs font-mono text-neutral-500">
-                    Dual Impact: Requirements Clarity + Scalable Frontend
+                    Dual Impact: Requirements Clarity + Scalable Architecture
                   </div>
                 </div>
 
@@ -264,16 +264,16 @@ export const AltriumDeepDive: React.FC = () => {
 
                     <div className="space-y-3">
                       <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15">
-                        <span className="text-xs font-semibold block text-white">System Architecture Documentation</span>
-                        <span className="text-[11px] text-white/80 font-light">UML Use Cases, Class Diagrams, Entity Models</span>
+                        <span className="text-xs font-semibold block text-white">Technology Stack Blueprint</span>
+                        <span className="text-[11px] text-white/80 font-light">React 19, Express 5, Sequelize ORM, MySQL, JWT, Multer</span>
+                      </div>
+                      <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15">
+                        <span className="text-xs font-semibold block text-white">Requirements & UML Models</span>
+                        <span className="text-[11px] text-white/80 font-light">Use Cases, Class Diagrams, 6-Role Entity Models in User.js</span>
                       </div>
                       <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15">
                         <span className="text-xs font-semibold block text-white">Product Backlog Repository</span>
-                        <span className="text-[11px] text-white/80 font-light">Prioritized epics, estimated story points</span>
-                      </div>
-                      <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15">
-                        <span className="text-xs font-semibold block text-white">Design Tokens & Reusable UI</span>
-                        <span className="text-[11px] text-white/80 font-light">Tailwind CSS component system & typography</span>
+                        <span className="text-[11px] text-white/80 font-light">Prioritized epics, user stories, acceptance criteria, story points</span>
                       </div>
                     </div>
                   </div>
