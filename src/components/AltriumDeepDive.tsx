@@ -347,22 +347,25 @@ export const AltriumDeepDive: React.FC = () => {
         </div>
 
         {/* Interactive 6-Screen Architecture & Live UI Walkthrough CTA */}
-        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-linear-to-r from-[#543244] to-[#656744] text-[#F7F2EA] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
+        <div
+          style={{ background: 'linear-gradient(135deg, #543244 0%, #3D2230 45%, #656744 100%)' }}
+          className="mt-12 p-6 sm:p-8 rounded-3xl text-[#F7F2EA] flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl border border-white/20 relative overflow-hidden"
+        >
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#E8DED0] mb-1 font-semibold">
-              <span className="w-2 h-2 rounded-full bg-[#00D47E] animate-ping" />
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#E8DED0] mb-1.5 font-bold">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#00D47E] shadow-[0_0_8px_#00D47E] animate-pulse" />
               <span>Interactive Architecture Showcase</span>
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-white">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Inspect All 6 Real Altrium System Screens
             </h3>
-            <p className="text-xs sm:text-sm text-white/80 font-light mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm text-[#F7F2EA]/90 font-light mt-1.5 max-w-xl leading-relaxed">
               Step through the actual deployed interfaces: Review Progress, Staggered Cycle Form Access, 2-Quarter PIP Engine, Confidential Tiered Tables, and Financial Year Rollover.
             </p>
           </div>
           <button
             onClick={() => setIsGalleryOpen(true)}
-            className="shrink-0 px-6 py-3.5 rounded-full bg-[#F7F2EA] text-[#543244] font-mono text-xs font-bold hover:bg-white transition-all shadow-md hover:scale-105 flex items-center gap-2 cursor-pointer"
+            className="shrink-0 px-6 py-3.5 rounded-full bg-[#F7F2EA] text-[#543244] font-mono text-xs font-bold hover:bg-white transition-all shadow-lg hover:scale-105 flex items-center gap-2 cursor-pointer"
           >
             <span>Launch 6-Screen UI Gallery</span>
             <ArrowUpRight className="w-4 h-4" />
