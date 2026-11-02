@@ -94,9 +94,9 @@ export const Hero: React.FC = () => {
 
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white dark:bg-[#1D181B] text-[#241E22] dark:text-[#F4EFEA] font-sans font-medium text-sm border border-[#543244]/20 dark:border-white/10 hover:border-[#543244] dark:hover:border-[#CE8CAE] transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white dark:bg-[#1D181B] text-[#241E22] dark:text-[#F4EFEA] font-sans font-medium text-sm border border-[#543244]/20 dark:border-white/10 hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all"
               >
-                <span>Browse All 7 Projects</span>
+                <span>Browse 4 Featured Works</span>
                 <ArrowDownRight className="w-4 h-4 text-neutral-400" />
               </a>
             </div>

@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FolderGit2, Sparkles, X, CheckCircle, ArrowUpRight } from 'lucide-react';
 import { portfolioData, Project } from '../data/portfolioData';
+import { ProjectMockup } from './ProjectMockup';
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const categories = ['All', 'Full Stack', 'Mobile', 'Desktop', 'Design & Web'];
+  const categories = ['All', 'Enterprise Full-Stack', 'Laravel Web App', 'Flutter Mobile', 'FinTech Web'];
 
   const filteredProjects = filter === 'All'
     ? portfolioData.projects
@@ -21,13 +22,13 @@ export const ProjectsSection: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#656744] dark:text-[#B5BC7E] font-bold mb-2">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Engineered Systems & Applications</span>
+              <span>Engineered Systems & Visual Showcase</span>
             </div>
             <h2 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight">
               Selected Works
             </h2>
             <p className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl font-light">
-              From enterprise Agile systems to cross-platform mobile apps and C# software.
+              Interactive visual preview of 4 signature systems across Next.js, Laravel, Flutter, and React.
             </p>
           </div>
 
@@ -49,10 +50,10 @@ export const ProjectsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Project Cards Grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        {/* 2x2 High-Impact Project Visual Cards Grid */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {filteredProjects.map((project, index) => {
-            const isOliveAccent = index % 2 === 1;
+            const isOlive = index % 2 === 1;
             return (
               <motion.div
                 key={project.id}
@@ -60,64 +61,65 @@ export const ProjectsSection: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.25, delay: index * 0.04 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.25, delay: index * 0.05 }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 onClick={() => setSelectedProject(project)}
-                className="cursor-pointer group flex flex-col justify-between rounded-3xl p-6 sm:p-7 bg-white dark:bg-[#1D181B] border-2 border-[#543244]/15 dark:border-white/10 shadow-xs hover:shadow-xl hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all relative overflow-hidden"
+                className="cursor-pointer group flex flex-col justify-between rounded-3xl p-6 sm:p-7 bg-white dark:bg-[#1D181B] border-2 border-[#543244]/15 dark:border-white/10 shadow-xs hover:shadow-2xl hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all relative overflow-hidden"
               >
-                {/* Top Accent Stripe: Alternating Olive Drab & Plum Wine */}
+                {/* Top Colored Accent Stripe */}
                 <div
                   className="absolute top-0 left-0 right-0 h-1.5 transition-all group-hover:h-2"
-                  style={{ backgroundColor: isOliveAccent ? '#656744' : '#543244' }}
+                  style={{ backgroundColor: isOlive ? '#656744' : '#543244' }}
                 />
 
                 <div>
                   {/* Category & Index Header in Olive Drab */}
-                  <div className="flex items-center justify-between text-xs font-mono mb-3 pt-1">
+                  <div className="flex items-center justify-between text-xs font-mono mb-4 pt-1">
                     <span className="uppercase tracking-wider font-bold text-[#656744] dark:text-[#B5BC7E] flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E]" />
+                      <span className="w-2 h-2 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
                       {project.category}
                     </span>
-                    <span className="text-neutral-400 font-bold">{`0${index + 1}`}</span>
+                    <span className="text-neutral-400 font-mono font-bold text-xs">{`0${index + 1} / 04`}</span>
                   </div>
 
-                  <h3 className="font-serif text-2xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-[#543244] dark:group-hover:text-[#E8A5C5] transition-colors leading-snug">
+                  {/* Visual UI Mockup Display */}
+                  <div className="mb-5 rounded-2xl overflow-hidden shadow-sm">
+                    <ProjectMockup type={project.mockupType} />
+                  </div>
+
+                  {/* Title & Subtitle */}
+                  <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-[#543244] dark:group-hover:text-[#E8A5C5] transition-colors leading-snug">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs font-mono text-neutral-500 dark:text-neutral-400 mt-1 mb-3">
+                  <p className="text-xs font-mono text-[#656744] dark:text-[#B5BC7E] mt-1 mb-2 font-semibold">
                     {project.subtitle}
                   </p>
 
-                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 font-light leading-relaxed line-clamp-3">
+                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 font-light leading-relaxed line-clamp-2">
                     {project.description}
                   </p>
                 </div>
 
                 {/* Bottom Tech Tags in Rich Olive Drab */}
                 <div className="mt-6 pt-4 border-t border-neutral-100 dark:border-white/5">
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.tags.slice(0, 3).map((tag) => (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-[#656744]/15 dark:bg-[#656744]/25 text-[#4E5130] dark:text-[#D5DBA6] border border-[#656744]/30"
+                        className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#656744]/15 dark:bg-[#656744]/25 text-[#4E5130] dark:text-[#D5DBA6] border border-[#656744]/30"
                       >
                         {tag}
                       </span>
                     ))}
-                    {project.tags.length > 3 && (
-                      <span className="text-[10px] font-mono text-[#656744] dark:text-[#B5BC7E] font-semibold self-center">
-                        +{project.tags.length - 3}
-                      </span>
-                    )}
                   </div>
 
                   <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#543244] dark:text-[#EFE7DB]">
-                    <span className="group-hover:text-[#656744] dark:group-hover:text-[#B5BC7E] transition-colors">
-                      Inspect Details
+                    <span className="group-hover:text-[#656744] dark:group-hover:text-[#B5BC7E] transition-colors flex items-center gap-1">
+                      <span>Inspect Architecture & Details</span>
                     </span>
-                    <div className="w-7 h-7 rounded-full bg-[#656744]/10 dark:bg-white/10 flex items-center justify-center text-[#656744] dark:text-[#B5BC7E] group-hover:bg-[#656744] group-hover:text-white transition-all shadow-xs">
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    <div className="w-8 h-8 rounded-full bg-[#656744]/15 dark:bg-white/10 flex items-center justify-center text-[#656744] dark:text-[#B5BC7E] group-hover:bg-[#656744] group-hover:text-white transition-all shadow-xs">
+                      <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>
                 </div>
@@ -160,9 +162,14 @@ export const ProjectsSection: React.FC = () => {
                   </p>
                 </div>
 
+                {/* Visual Mockup inside Modal */}
+                <div className="mt-5 rounded-2xl overflow-hidden shadow-sm">
+                  <ProjectMockup type={selectedProject.mockupType} />
+                </div>
+
                 <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800">
                   <h4 className="text-xs font-mono uppercase tracking-wider text-[#656744] dark:text-[#B5BC7E] font-bold mb-2">
-                    Project Overview
+                    System Architecture & Overview
                   </h4>
                   <p className="text-sm text-neutral-700 dark:text-neutral-300 font-light leading-relaxed">
                     {selectedProject.description}
@@ -185,7 +192,7 @@ export const ProjectsSection: React.FC = () => {
 
                 <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800">
                   <h4 className="text-xs font-mono uppercase tracking-wider text-[#656744] dark:text-[#B5BC7E] font-bold mb-3">
-                    Technologies Applied
+                    Core Stack
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.tags.map((t) => (
