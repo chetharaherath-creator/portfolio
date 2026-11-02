@@ -47,7 +47,10 @@ export const Hero: React.FC = () => {
           <div className="flex items-center gap-3 tracking-wider uppercase text-[11px]">
             <span>University of Staffordshire (APIIT)</span>
             <span className="text-neutral-300 dark:text-neutral-700">•</span>
-            <span className="text-[#656744] dark:text-[#B5BC7E] font-semibold">Available for Internships</span>
+            <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Available for Internships
+            </span>
           </div>
         </div>
 
@@ -98,19 +101,19 @@ export const Hero: React.FC = () => {
               </a>
             </div>
 
-            {/* Quick Credentials Strip */}
+            {/* Quick Credentials Strip with Vivid Focal Points */}
             <div className="mt-10 grid grid-cols-3 gap-3 pt-6 border-t border-[#543244]/15 dark:border-white/10 max-w-xl">
-              <div className="p-3.5 rounded-2xl bg-white/80 dark:bg-[#1D181B] border border-[#543244]/10 dark:border-white/10">
+              <div className="p-3.5 rounded-2xl bg-white/80 dark:bg-[#1D181B] border border-[#543244]/10 dark:border-white/10 hover:border-[#543244]/30 transition-colors">
                 <span className="text-[10px] font-mono text-neutral-500 uppercase block">Education</span>
-                <span className="text-xs font-medium text-[#241E22] dark:text-[#F4EFEA]">BEng Software Eng</span>
+                <span className="text-xs font-semibold text-[#543244] dark:text-[#E8A5C5]">BEng Software Eng</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-white/80 dark:bg-[#1D181B] border border-[#543244]/10 dark:border-white/10">
-                <span className="text-[10px] font-mono text-neutral-500 uppercase block">Agile Role</span>
-                <span className="text-xs font-semibold text-[#656744] dark:text-[#B5BC7E]">Scrum Master (Sprint 2)</span>
+              <div className="p-3.5 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/30 transition-colors">
+                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 uppercase block font-semibold">Agile Role</span>
+                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">Scrum Master (Sprint 2)</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-white/80 dark:bg-[#1D181B] border border-[#543244]/10 dark:border-white/10">
-                <span className="text-[10px] font-mono text-neutral-500 uppercase block">Leadership</span>
-                <span className="text-xs font-medium text-[#241E22] dark:text-[#F4EFEA]">Taekwondo Captain</span>
+              <div className="p-3.5 rounded-2xl bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/30 transition-colors">
+                <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 uppercase block font-semibold">Leadership</span>
+                <span className="text-xs font-bold text-amber-700 dark:text-amber-300">Taekwondo Captain</span>
               </div>
             </div>
           </div>

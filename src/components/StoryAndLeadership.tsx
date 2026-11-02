@@ -68,24 +68,34 @@ export const StoryAndLeadership: React.FC = () => {
               </h3>
 
               <div className="space-y-3">
-                {portfolioData.certifications.map((cert) => (
-                  <div
-                    key={cert.title}
-                    className="p-3.5 rounded-2xl bg-[#543244]/5 dark:bg-white/[0.03] border border-[#543244]/10 dark:border-white/5 flex items-center justify-between"
-                  >
-                    <div>
-                      <span className="font-semibold text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 block">
-                        {cert.title}
-                      </span>
-                      <span className="text-[11px] font-mono text-neutral-500">
-                        {cert.issuer} • {cert.year}
+                {portfolioData.certifications.map((cert) => {
+                  const getBadgeColor = (title: string) => {
+                    if (title.includes('React')) return 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/20';
+                    if (title.includes('Java')) return 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20';
+                    if (title.includes('CIMA')) return 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20';
+                    if (title.includes('Graphic')) return 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/20';
+                    return 'bg-amber-500/15 text-amber-600 dark:text-amber-300 border-amber-500/30';
+                  };
+
+                  return (
+                    <div
+                      key={cert.title}
+                      className="p-3.5 rounded-2xl bg-[#543244]/5 dark:bg-white/[0.03] border border-[#543244]/10 dark:border-white/5 flex items-center justify-between"
+                    >
+                      <div>
+                        <span className="font-semibold text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 block">
+                          {cert.title}
+                        </span>
+                        <span className="text-[11px] font-mono text-neutral-500">
+                          {cert.issuer} • {cert.year}
+                        </span>
+                      </div>
+                      <span className={`text-[10px] font-mono font-semibold px-2.5 py-1 rounded-lg border shrink-0 ${getBadgeColor(cert.title)}`}>
+                        {cert.badge}
                       </span>
                     </div>
-                    <span className="text-[10px] font-mono font-medium px-2 py-1 rounded-lg bg-[#656744]/15 text-[#656744] shrink-0">
-                      {cert.badge}
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 

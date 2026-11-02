@@ -73,10 +73,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Action Tools & Status */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Status Pill */}
-            <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-[#656744]/10 text-[#656744] dark:bg-[#656744]/20 dark:text-[#A7AA79] border border-[#656744]/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#656744] animate-pulse" />
-              <span>Available for Internships</span>
+            {/* Status Pill with Vibrant Radar Beacon */}
+            <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300 border border-emerald-500/30 shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="tracking-wide">Available for Internships</span>
             </div>
 
             {/* Grid Overlay Toggle (Mobius Easter Egg) */}

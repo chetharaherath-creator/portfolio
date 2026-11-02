@@ -89,7 +89,7 @@ export const AltriumDeepDive: React.FC = () => {
 
                     <div className="mt-6 space-y-3.5">
                       <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-[#656744] shrink-0 mt-1" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
                             Daily Standups & Impediment Removal
@@ -101,7 +101,7 @@ export const AltriumDeepDive: React.FC = () => {
                       </div>
 
                       <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-[#656744] shrink-0 mt-1" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
                             Sprint Reviews, Demos & Burndown Tracking
@@ -113,7 +113,7 @@ export const AltriumDeepDive: React.FC = () => {
                       </div>
 
                       <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-[#656744] shrink-0 mt-1" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1" />
                         <div>
                           <strong className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 block">
                             Definition of Done (DoD) & Code Reviews
@@ -127,8 +127,8 @@ export const AltriumDeepDive: React.FC = () => {
                   </div>
 
                   <div className="mt-8 pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between text-xs font-mono text-neutral-500">
-                    <span>Outcome: 100% Backlog Delivered</span>
-                    <span className="text-[#656744] font-semibold">Zero Critical Bugs</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Outcome: 100% Backlog Delivered On-Time</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">Zero Critical Bugs</span>
                   </div>
                 </div>
 

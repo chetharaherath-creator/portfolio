@@ -116,8 +116,8 @@ export const InteractiveBadge: React.FC = () => {
                   <span className="font-semibold text-[#543244] dark:text-[#E8A5C5] tracking-wider uppercase">
                     APIIT • STAFFORDSHIRE
                   </span>
-                  <span className="flex items-center gap-1 font-bold text-[#656744] dark:text-[#B5BC7E]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
+                  <span className="flex items-center gap-1.5 font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/20 px-2 py-0.5 rounded-full text-[9px] border border-emerald-500/30">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     DEV ACCESS
                   </span>
                 </div>
