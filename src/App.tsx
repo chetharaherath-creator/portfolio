@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { AltriumDeepDive } from './components/AltriumDeepDive';
+import AltriumDeepDive from './components/AltriumDeepDive';
 import { ProjectsSection } from './components/ProjectsSection';
 import { SkillsMarquee } from './components/SkillsMarquee';
 import { StoryAndLeadership } from './components/StoryAndLeadership';

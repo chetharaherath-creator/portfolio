@@ -347,3 +347,6 @@ export const AltriumDeepDive: React.FC = () => {
     </section>
   );
 };
+
+export default AltriumDeepDive;
+
