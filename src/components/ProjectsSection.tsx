@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FolderGit2, Sparkles, X, CheckCircle, ArrowUpRight } from 'lucide-react';
 import { portfolioData, Project } from '../data/portfolioData';
 import { ProjectMockup } from './ProjectMockup';
+import { AltriumGalleryModal } from './AltriumGalleryModal';
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isAltriumGalleryOpen, setIsAltriumGalleryOpen] = useState<boolean>(false);
 
   const categories = ['All', 'Enterprise Full-Stack', 'Laravel Web App', 'Flutter Mobile', 'FinTech Web'];
 
@@ -63,7 +65,13 @@ export const ProjectsSection: React.FC = () => {
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.25, delay: index * 0.05 }}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => {
+                  if (project.id === 'altrium-performance-tracker') {
+                    setIsAltriumGalleryOpen(true);
+                  } else {
+                    setSelectedProject(project);
+                  }
+                }}
                 className="cursor-pointer group flex flex-col justify-between rounded-3xl p-6 sm:p-7 bg-white dark:bg-[#1D181B] border-2 border-[#543244]/15 dark:border-white/10 shadow-xs hover:shadow-2xl hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all relative overflow-hidden"
               >
                 {/* Top Colored Accent Stripe */}
@@ -116,7 +124,11 @@ export const ProjectsSection: React.FC = () => {
 
                   <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#543244] dark:text-[#EFE7DB]">
                     <span className="group-hover:text-[#656744] dark:group-hover:text-[#B5BC7E] transition-colors flex items-center gap-1">
-                      <span>Inspect Architecture & Details</span>
+                      <span>
+                        {project.id === 'altrium-performance-tracker'
+                          ? 'Launch 6-Screen System & UI Gallery'
+                          : 'Inspect Architecture & Details'}
+                      </span>
                     </span>
                     <div className="w-8 h-8 rounded-full bg-[#656744]/15 dark:bg-white/10 flex items-center justify-center text-[#656744] dark:text-[#B5BC7E] group-hover:bg-[#656744] group-hover:text-white transition-all shadow-xs">
                       <ArrowUpRight className="w-4 h-4" />
@@ -228,6 +240,12 @@ export const ProjectsSection: React.FC = () => {
             </div>
           )}
         </AnimatePresence>
+
+        {/* Dedicated 6-Screen Altrium System Walkthrough Modal */}
+        <AltriumGalleryModal
+          isOpen={isAltriumGalleryOpen}
+          onClose={() => setIsAltriumGalleryOpen(false)}
+        />
       </div>
     </section>
   );

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, GitPullRequest, Layers, Activity, FileText } from 'lucide-react';
+import { CheckCircle2, GitPullRequest, Layers, Activity, FileText, ArrowUpRight } from 'lucide-react';
+import { AltriumGalleryModal } from './AltriumGalleryModal';
 
 export const AltriumDeepDive: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'sprint2' | 'sprint1' | 'stack'>('sprint2');
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   return (
     <section id="altrium" className="py-20 md:py-24 relative">
@@ -343,6 +345,35 @@ export const AltriumDeepDive: React.FC = () => {
             )}
           </AnimatePresence>
         </div>
+
+        {/* Interactive 6-Screen Architecture & Live UI Walkthrough CTA */}
+        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-linear-to-r from-[#543244] to-[#656744] text-[#F7F2EA] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#E8DED0] mb-1 font-semibold">
+              <span className="w-2 h-2 rounded-full bg-[#00D47E] animate-ping" />
+              <span>Interactive Architecture Showcase</span>
+            </div>
+            <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-white">
+              Inspect All 6 Real Altrium System Screens
+            </h3>
+            <p className="text-xs sm:text-sm text-white/80 font-light mt-1 max-w-xl">
+              Step through the actual deployed interfaces: Review Progress, Staggered Cycle Form Access, 2-Quarter PIP Engine, Confidential Tiered Tables, and Financial Year Rollover.
+            </p>
+          </div>
+          <button
+            onClick={() => setIsGalleryOpen(true)}
+            className="shrink-0 px-6 py-3.5 rounded-full bg-[#F7F2EA] text-[#543244] font-mono text-xs font-bold hover:bg-white transition-all shadow-md hover:scale-105 flex items-center gap-2 cursor-pointer"
+          >
+            <span>Launch 6-Screen UI Gallery</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Gallery Modal */}
+        <AltriumGalleryModal
+          isOpen={isGalleryOpen}
+          onClose={() => setIsGalleryOpen(false)}
+        />
       </div>
     </section>
   );

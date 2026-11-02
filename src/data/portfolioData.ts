@@ -227,5 +227,26 @@ export const portfolioData = {
   languages: [
     { name: "Sinhala", proficiency: "Native / Bilingual" },
     { name: "English", proficiency: "Professional Working Proficiency" },
+  ],
+
+  pantonePalette: [
+    {
+      code: "12-0812 TCX",
+      name: "Alabaster Gleam",
+      hex: "#F7F2EA",
+      role: "Luxury warm parchment canvas and background base"
+    },
+    {
+      code: "18-1411 TCX",
+      name: "Plum Wine",
+      hex: "#543244",
+      role: "Velvet depth, headline authority, and high-contrast monograms"
+    },
+    {
+      code: "18-0622 TCX",
+      name: "Olive Drab",
+      hex: "#656744",
+      role: "Hero editorial accent, lanyard ribbon, and engineering badges"
+    }
   ]
 };
