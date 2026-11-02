@@ -57,10 +57,10 @@ export const InteractiveBadge: React.FC = () => {
       >
         {/* Fabric Lanyard Ribbon hanging from top */}
         <div className="relative z-20 flex flex-col items-center -mb-3 pointer-events-none">
-          {/* Ribbon Strap */}
-          <div className="w-10 sm:w-12 h-16 sm:h-20 bg-gradient-to-b from-[#543244] via-[#6E435B] to-[#543244] shadow-md relative overflow-hidden flex items-center justify-center border-x border-[#3C1F2F]">
-            <div className="absolute inset-y-0 w-1 border-r border-dashed border-white/20" />
-            <span className="text-[7px] font-mono tracking-widest text-[#F7F2EA]/60 uppercase rotate-90 whitespace-nowrap">
+          {/* Ribbon Strap with Plum & Olive Stitching */}
+          <div className="w-10 sm:w-12 h-16 sm:h-20 bg-gradient-to-b from-[#543244] via-[#656744] to-[#543244] shadow-md relative overflow-hidden flex items-center justify-center border-x-2 border-[#3C1F2F]">
+            <div className="absolute inset-y-0 w-1 border-r border-dashed border-[#B5BC7E]/40" />
+            <span className="text-[7px] font-mono font-bold tracking-widest text-[#F7F2EA]/90 uppercase rotate-90 whitespace-nowrap">
               APIIT // ENG
             </span>
           </div>

@@ -38,8 +38,8 @@ export const AltriumDeepDive: React.FC = () => {
               onClick={() => setActiveTab('sprint1')}
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
                 activeTab === 'sprint1'
-                  ? 'bg-[#543244] text-[#F7F2EA] shadow-xs'
-                  : 'text-neutral-600 dark:text-neutral-300 hover:text-[#543244]'
+                  ? 'bg-[#656744] text-white shadow-xs font-semibold'
+                  : 'text-neutral-600 dark:text-neutral-300 hover:text-[#656744]'
               }`}
             >
               Sprint 1: Dev & BA
