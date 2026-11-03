@@ -7,6 +7,121 @@ import { AltriumGalleryModal } from './AltriumGalleryModal';
 import { TaskTrackerGalleryModal } from './TaskTrackerGalleryModal';
 import { FinanceGalleryModal } from './FinanceGalleryModal';
 
+interface ProjectSpotlightCardProps {
+  project: Project;
+  index: number;
+  onOpen: () => void;
+}
+
+const ProjectSpotlightCard: React.FC<ProjectSpotlightCardProps> = ({ project, index, onOpen }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0, opacity: 0 });
+  const isOlive = index % 2 === 1;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+      opacity: 1,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setMousePos(prev => ({ ...prev, opacity: 0 }));
+  };
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }}
+      whileHover={{ y: -6, transition: { duration: 0.2 } }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={onOpen}
+      className="cursor-pointer group flex flex-col justify-between rounded-3xl p-6 sm:p-7 bg-white dark:bg-[#1D181B] border-2 border-[#543244]/15 dark:border-white/10 shadow-xs hover:shadow-2xl hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all relative overflow-hidden"
+    >
+      {/* Möbius-Style Radial Cursor Spotlight */}
+      <div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, ${
+            isOlive ? 'rgba(101,103,68,0.15)' : 'rgba(84,50,68,0.12)'
+          }, transparent 40%)`,
+        }}
+      />
+
+      {/* Top Colored Accent Stripe */}
+      <div
+        className="absolute top-0 left-0 right-0 h-1.5 transition-all group-hover:h-2"
+        style={{ backgroundColor: isOlive ? '#656744' : '#543244' }}
+      />
+
+      <div className="relative z-10">
+        {/* Category & Index Header in Olive Drab */}
+        <div className="flex items-center justify-between text-xs font-mono mb-4 pt-1">
+          <span className="uppercase tracking-wider font-bold text-[#656744] dark:text-[#B5BC7E] flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
+            {project.category}
+          </span>
+          <span className="text-neutral-400 font-mono font-bold text-xs">{`0${index + 1} / 04`}</span>
+        </div>
+
+        {/* Visual UI Mockup Display */}
+        <div className="mb-5 rounded-2xl overflow-hidden shadow-sm">
+          <ProjectMockup type={project.mockupType} />
+        </div>
+
+        {/* Title & Subtitle */}
+        <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-[#543244] dark:group-hover:text-[#E8A5C5] transition-colors leading-snug">
+          {project.title}
+        </h3>
+
+        <p className="text-xs font-mono text-[#656744] dark:text-[#B5BC7E] mt-1 mb-2 font-semibold">
+          {project.subtitle}
+        </p>
+
+        <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 font-light leading-relaxed line-clamp-2">
+          {project.description}
+        </p>
+      </div>
+
+      {/* Bottom Tech Tags in Rich Olive Drab */}
+      <div className="mt-6 pt-4 border-t border-neutral-100 dark:border-white/5 relative z-10">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#656744]/15 dark:bg-[#656744]/25 text-[#4E5130] dark:text-[#D5DBA6] border border-[#656744]/30"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#543244] dark:text-[#EFE7DB]">
+          <span className="group-hover:text-[#656744] dark:group-hover:text-[#B5BC7E] transition-colors flex items-center gap-1">
+            <span>
+              {project.id === 'altrium-performance-tracker'
+                ? 'Launch 6-Screen Altrium UI Gallery'
+                : project.id === 'task-tracker-app'
+                ? 'Launch 4-Screen Mint. App Gallery'
+                : project.id === 'personal-finance'
+                ? 'Launch 3-Screen Finance UI Gallery'
+                : 'Inspect Architecture & Details'}
+            </span>
+          </span>
+          <div className="w-8 h-8 rounded-full bg-[#656744]/15 dark:bg-white/10 flex items-center justify-center text-[#656744] dark:text-[#B5BC7E] group-hover:bg-[#656744] group-hover:text-white transition-all shadow-xs">
+            <ArrowUpRight className="w-4 h-4" />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -56,100 +171,26 @@ export const ProjectsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 2x2 High-Impact Project Visual Cards Grid */}
+        {/* 2x2 High-Impact Project Visual Cards Grid with Cursor Spotlight */}
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project, index) => {
-            const isOlive = index % 2 === 1;
-            return (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.25, delay: index * 0.05 }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                onClick={() => {
-                  if (project.id === 'altrium-performance-tracker') {
-                    setIsAltriumGalleryOpen(true);
-                  } else if (project.id === 'task-tracker-app') {
-                    setIsTaskTrackerGalleryOpen(true);
-                  } else if (project.id === 'personal-finance') {
-                    setIsFinanceGalleryOpen(true);
-                  } else {
-                    setSelectedProject(project);
-                  }
-                }}
-                className="cursor-pointer group flex flex-col justify-between rounded-3xl p-6 sm:p-7 bg-white dark:bg-[#1D181B] border-2 border-[#543244]/15 dark:border-white/10 shadow-xs hover:shadow-2xl hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all relative overflow-hidden"
-              >
-                {/* Top Colored Accent Stripe */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-1.5 transition-all group-hover:h-2"
-                  style={{ backgroundColor: isOlive ? '#656744' : '#543244' }}
-                />
-
-                <div>
-                  {/* Category & Index Header in Olive Drab */}
-                  <div className="flex items-center justify-between text-xs font-mono mb-4 pt-1">
-                    <span className="uppercase tracking-wider font-bold text-[#656744] dark:text-[#B5BC7E] flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
-                      {project.category}
-                    </span>
-                    <span className="text-neutral-400 font-mono font-bold text-xs">{`0${index + 1} / 04`}</span>
-                  </div>
-
-                  {/* Visual UI Mockup Display */}
-                  <div className="mb-5 rounded-2xl overflow-hidden shadow-sm">
-                    <ProjectMockup type={project.mockupType} />
-                  </div>
-
-                  {/* Title & Subtitle */}
-                  <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-[#543244] dark:group-hover:text-[#E8A5C5] transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-xs font-mono text-[#656744] dark:text-[#B5BC7E] mt-1 mb-2 font-semibold">
-                    {project.subtitle}
-                  </p>
-
-                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 font-light leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Bottom Tech Tags in Rich Olive Drab */}
-                <div className="mt-6 pt-4 border-t border-neutral-100 dark:border-white/5">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#656744]/15 dark:bg-[#656744]/25 text-[#4E5130] dark:text-[#D5DBA6] border border-[#656744]/30"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs font-mono font-semibold text-[#543244] dark:text-[#EFE7DB]">
-                    <span className="group-hover:text-[#656744] dark:group-hover:text-[#B5BC7E] transition-colors flex items-center gap-1">
-                      <span>
-                        {project.id === 'altrium-performance-tracker'
-                          ? 'Launch 6-Screen Altrium UI Gallery'
-                          : project.id === 'task-tracker-app'
-                          ? 'Launch 4-Screen Mint. App Gallery'
-                          : project.id === 'personal-finance'
-                          ? 'Launch 3-Screen Finance UI Gallery'
-                          : 'Inspect Architecture & Details'}
-                      </span>
-                    </span>
-                    <div className="w-8 h-8 rounded-full bg-[#656744]/15 dark:bg-white/10 flex items-center justify-center text-[#656744] dark:text-[#B5BC7E] group-hover:bg-[#656744] group-hover:text-white transition-all shadow-xs">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {filteredProjects.map((project, index) => (
+            <ProjectSpotlightCard
+              key={project.id}
+              project={project}
+              index={index}
+              onOpen={() => {
+                if (project.id === 'altrium-performance-tracker') {
+                  setIsAltriumGalleryOpen(true);
+                } else if (project.id === 'task-tracker-app') {
+                  setIsTaskTrackerGalleryOpen(true);
+                } else if (project.id === 'personal-finance') {
+                  setIsFinanceGalleryOpen(true);
+                } else {
+                  setSelectedProject(project);
+                }
+              }}
+            />
+          ))}
         </div>
 
         {/* Modal Drawer */}

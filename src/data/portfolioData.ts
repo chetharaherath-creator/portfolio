@@ -20,7 +20,7 @@ export const portfolioData = {
   personal: {
     fullName: "Herath Mudiyanselage Dona Chethara Nethini Herath",
     shortName: "Chethara Herath",
-    title: "Software Engineering Undergraduate & UI/UX Designer",
+    title: "Software Engineer • Developer, Business Analyst & Scrum Master",
     headline: "Architecting elegant code, fluid interfaces, and human-centric software solutions.",
     bio: "Software Engineering undergraduate at the University of Staffordshire (APIIT) with hands-on expertise building web, mobile, and desktop systems. Bridging engineering precision with graphic design artistry (IMBS Diploma) and disciplined leadership as former School Taekwondo Captain.",
     status: "Available for Software Engineering Internships",
@@ -33,9 +33,9 @@ export const portfolioData = {
   },
 
   stats: [
-    { label: "Engineering Disciplines", value: "3+", detail: "Web, Mobile & Enterprise" },
+    { label: "Engineering Disciplines", value: "3+", detail: "Web, Mobile & Cloud" },
     { label: "Featured Applications", value: "4", detail: "React, Next.js, Laravel & Flutter" },
-    { label: "Agile Leadership", value: "Scrum Master", detail: "Sprint 2 for Altrium Tracker" },
+    { label: "Agile Versatility", value: "3 Roles", detail: "Developer • BA • Scrum Master" },
     { label: "Design Certifications", value: "Diploma", detail: "IMBS Green University" },
   ],
 

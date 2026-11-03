@@ -107,9 +107,9 @@ export const Hero: React.FC = () => {
                 <span className="text-[10px] font-mono text-neutral-500 uppercase block">Education</span>
                 <span className="text-xs font-semibold text-[#543244] dark:text-[#E8A5C5]">BEng Software Eng</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/30 transition-colors">
-                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 uppercase block font-semibold">Agile Role</span>
-                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">Scrum Master (Sprint 2)</span>
+              <div className="p-3.5 rounded-2xl bg-[#656744]/10 dark:bg-[#656744]/20 border border-[#656744]/30 transition-colors">
+                <span className="text-[10px] font-mono text-[#656744] dark:text-[#B5BC7E] uppercase block font-bold">Agile Versatility</span>
+                <span className="text-xs font-bold text-[#4B4D2F] dark:text-[#D5DBA6]">Dev • BA • Scrum Master</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/30 transition-colors">
                 <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 uppercase block font-semibold">Leadership</span>
