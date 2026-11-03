@@ -232,13 +232,13 @@ export const ProjectsSection: React.FC = () => {
 
                 <div className="mt-8 pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
                   <a
-                    href={portfolioData.personal.github}
+                    href={selectedProject.githubUrl || portfolioData.personal.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-[#656744] dark:text-[#B5BC7E] hover:underline font-semibold"
                   >
                     <FolderGit2 className="w-4 h-4" />
-                    <span>View GitHub Repositories</span>
+                    <span>View GitHub Repository</span>
                   </a>
 
                   <button

@@ -119,6 +119,7 @@ export const portfolioData = {
       role: "Frontend & Firebase Developer",
       duration: "Completed Project",
       metrics: "Firebase Firestore • Auth • Dark/Light Mode",
+      githubUrl: "https://github.com/chetharaherath-creator/Personal_Finance.git",
       featured: false,
       accentColor: "#543244",
       mockupType: "finance"

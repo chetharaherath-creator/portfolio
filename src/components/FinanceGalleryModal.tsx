@@ -228,9 +228,22 @@ export const FinanceGalleryModal: React.FC<FinanceGalleryModalProps> = ({ isOpen
 
           {/* Modal Footer */}
           <div className="mt-8 pt-4 border-t border-[#543244]/15 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <span className="text-xs font-mono text-neutral-500">
-              Stack: React • Tailwind CSS • Firebase Firestore • Firebase Auth • Theme Toggle
-            </span>
+            <div className="flex items-center gap-4 text-xs font-mono">
+              <a
+                href="https://github.com/chetharaherath-creator/Personal_Finance.git"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[#543244] dark:text-[#E8A5C5] hover:underline font-semibold"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>GitHub: Personal_Finance</span>
+              </a>
+              <span className="text-neutral-400">•</span>
+              <span className="text-amber-500 font-semibold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                Firebase Firestore
+              </span>
+            </div>
 
             <button
               onClick={onClose}
@@ -244,3 +257,4 @@ export const FinanceGalleryModal: React.FC<FinanceGalleryModalProps> = ({ isOpen
     </AnimatePresence>
   );
 };
+
