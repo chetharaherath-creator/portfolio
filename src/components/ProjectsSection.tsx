@@ -5,12 +5,14 @@ import { portfolioData, Project } from '../data/portfolioData';
 import { ProjectMockup } from './ProjectMockup';
 import { AltriumGalleryModal } from './AltriumGalleryModal';
 import { TaskTrackerGalleryModal } from './TaskTrackerGalleryModal';
+import { FinanceGalleryModal } from './FinanceGalleryModal';
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isAltriumGalleryOpen, setIsAltriumGalleryOpen] = useState<boolean>(false);
   const [isTaskTrackerGalleryOpen, setIsTaskTrackerGalleryOpen] = useState<boolean>(false);
+  const [isFinanceGalleryOpen, setIsFinanceGalleryOpen] = useState<boolean>(false);
 
   const categories = ['All', 'Enterprise Full-Stack', 'Laravel Web App', 'Flutter Mobile', 'FinTech Web'];
 
@@ -72,6 +74,8 @@ export const ProjectsSection: React.FC = () => {
                     setIsAltriumGalleryOpen(true);
                   } else if (project.id === 'task-tracker-app') {
                     setIsTaskTrackerGalleryOpen(true);
+                  } else if (project.id === 'personal-finance') {
+                    setIsFinanceGalleryOpen(true);
                   } else {
                     setSelectedProject(project);
                   }
@@ -133,6 +137,8 @@ export const ProjectsSection: React.FC = () => {
                           ? 'Launch 6-Screen Altrium UI Gallery'
                           : project.id === 'task-tracker-app'
                           ? 'Launch 4-Screen Mint. App Gallery'
+                          : project.id === 'personal-finance'
+                          ? 'Launch 3-Screen Finance UI Gallery'
                           : 'Inspect Architecture & Details'}
                       </span>
                     </span>
@@ -257,6 +263,12 @@ export const ProjectsSection: React.FC = () => {
         <TaskTrackerGalleryModal
           isOpen={isTaskTrackerGalleryOpen}
           onClose={() => setIsTaskTrackerGalleryOpen(false)}
+        />
+
+        {/* Dedicated 3-Screen Finance Tracker Walkthrough Modal */}
+        <FinanceGalleryModal
+          isOpen={isFinanceGalleryOpen}
+          onClose={() => setIsFinanceGalleryOpen(false)}
         />
       </div>
     </section>

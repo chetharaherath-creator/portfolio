@@ -143,56 +143,37 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ type }) => {
 
   // Personal Finance Tracker
   return (
-    <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-[#1A1F26] to-[#10141A] rounded-2xl p-4 text-white overflow-hidden relative border border-cyan-500/30 shadow-inner flex flex-col justify-between group-hover:scale-[1.01] transition-transform duration-300">
-      <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[10px] font-mono text-neutral-400">
+    <div className="w-full h-48 sm:h-56 bg-neutral-900 rounded-2xl overflow-hidden relative border-2 border-[#543244]/30 shadow-md group-hover:border-[#543244] transition-all duration-300">
+      {/* Browser Chrome Header */}
+      <div className="bg-[#241E22] px-3 py-1.5 flex items-center justify-between border-b border-white/10 z-10 relative">
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span className="font-semibold text-white">Finance Intelligence Command</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+          <span className="ml-2 font-mono text-[10px] text-neutral-300 font-medium">finance-tracker.web.app / dashboard</span>
         </div>
-        <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[9px] font-bold">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          FIREBASE SYNC
+        <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[9px] font-mono font-bold flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+          FIREBASE FIRESTORE
         </span>
       </div>
 
-      <div className="grid grid-cols-12 gap-3 my-auto items-center">
-        <div className="col-span-6 bg-white/5 p-2.5 rounded-xl border border-white/10">
-          <span className="text-[9px] font-mono text-neutral-400 block">TOTAL LIQUIDITY</span>
-          <div className="font-mono text-lg font-bold text-white tracking-tight">
-            $14,850.00
-          </div>
-          <div className="flex items-center gap-1 text-[9px] font-mono text-emerald-400 mt-0.5">
-            <TrendingUp className="w-3 h-3" />
-            <span>+12.4% Savings</span>
-          </div>
+      {/* Real Finance Tracker Dashboard Screenshot */}
+      <div className="relative w-full h-[calc(100%-28px)] overflow-hidden bg-[#FAF6F0]">
+        <img
+          src="/projects/finance/dashboard.png"
+          alt="Finance Tracker Dashboard"
+          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          style={{ filter: 'contrast(1.03) saturate(1.02)', imageRendering: '-webkit-optimize-contrast' }}
+        />
+        {/* Subtle gradient overlay to blend into card */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+        {/* Quick Real Screenshot Badge */}
+        <div className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-xs text-[10px] font-mono text-white flex items-center gap-1.5 border border-white/20">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          <span>REAL APP UI • REACT & FIREBASE</span>
         </div>
-
-        <div className="col-span-6 space-y-1.5 text-[9px] font-mono">
-          <div>
-            <div className="flex justify-between text-neutral-300 mb-0.5">
-              <span>Cloud Stack</span>
-              <span className="text-cyan-300 font-bold">45%</span>
-            </div>
-            <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-              <div className="bg-cyan-400 h-full w-[45%]" />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex justify-between text-neutral-300 mb-0.5">
-              <span>Design Licenses</span>
-              <span className="text-[#CE8CAE] font-bold">30%</span>
-            </div>
-            <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-              <div className="bg-[#CE8CAE] h-full w-[30%]" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between pt-1 border-t border-white/5 text-[9px] font-mono text-neutral-400">
-        <span>Cloud Firestore Stream</span>
-        <span className="text-cyan-300">React + Tailwind</span>
       </div>
     </div>
   );

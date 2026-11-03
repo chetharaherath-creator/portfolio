@@ -105,22 +105,22 @@ export const portfolioData = {
     },
     {
       id: "personal-finance",
-      title: "Personal Finance Tracker",
-      subtitle: "Real-Time Expense Intelligence & Budget Management",
+      title: "Finance Tracker",
+      subtitle: "Real-Time Subscription & Expense Intelligence System",
       category: "FinTech Web",
-      tags: ["React", "Firebase", "Tailwind CSS", "Data Analytics"],
-      description: "A modern personal wealth and ledger command center enabling real-time expense tracking, category budgeting, and synchronized cloud storage.",
+      tags: ["React", "Tailwind CSS", "Firebase Firestore", "Firebase Auth", "Theme Switcher"],
+      description: "A modern personal wealth and subscription management application built with React, Tailwind CSS, and Firebase. Designed to monitor recurring subscriptions, monthly expense commitments, category allocations, and renewal dates. Features real-time Firestore synchronization, dark/light theme toggling, and daily financial advice.",
       highlights: [
-        "Built responsive interactive data charts for monthly spending velocity and category distributions",
-        "Integrated Firebase Firestore for instant real-time synchronization across devices",
-        "Engineered budget threshold alarms, receipt logging, and net cashflow calculations",
-        "Designed clean dark/light financial UI with high data legibility"
+        "Engineered recurring subscription management tracking monthly commitments and renewal calendars",
+        "Connected Firebase Firestore for instant real-time synchronization and authenticated cloud persistence",
+        "Implemented custom dark/light theme switcher and daily curated financial tips for healthy spending habits",
+        "Responsive, high-clarity dashboard interface designed with Tailwind CSS utility architecture"
       ],
-      role: "Sole Creator",
-      duration: "Completed",
-      metrics: "Real-time Firestore Sync",
+      role: "Frontend & Firebase Developer",
+      duration: "Completed Project",
+      metrics: "Firebase Firestore • Auth • Dark/Light Mode",
       featured: false,
-      accentColor: "#656744",
+      accentColor: "#543244",
       mockupType: "finance"
     }
   ] as Project[],
