@@ -4,11 +4,13 @@ import { FolderGit2, Sparkles, X, CheckCircle, ArrowUpRight } from 'lucide-react
 import { portfolioData, Project } from '../data/portfolioData';
 import { ProjectMockup } from './ProjectMockup';
 import { AltriumGalleryModal } from './AltriumGalleryModal';
+import { TaskTrackerGalleryModal } from './TaskTrackerGalleryModal';
 
 export const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isAltriumGalleryOpen, setIsAltriumGalleryOpen] = useState<boolean>(false);
+  const [isTaskTrackerGalleryOpen, setIsTaskTrackerGalleryOpen] = useState<boolean>(false);
 
   const categories = ['All', 'Enterprise Full-Stack', 'Laravel Web App', 'Flutter Mobile', 'FinTech Web'];
 
@@ -68,6 +70,8 @@ export const ProjectsSection: React.FC = () => {
                 onClick={() => {
                   if (project.id === 'altrium-performance-tracker') {
                     setIsAltriumGalleryOpen(true);
+                  } else if (project.id === 'task-tracker-app') {
+                    setIsTaskTrackerGalleryOpen(true);
                   } else {
                     setSelectedProject(project);
                   }
@@ -126,7 +130,9 @@ export const ProjectsSection: React.FC = () => {
                     <span className="group-hover:text-[#656744] dark:group-hover:text-[#B5BC7E] transition-colors flex items-center gap-1">
                       <span>
                         {project.id === 'altrium-performance-tracker'
-                          ? 'Launch 6-Screen System & UI Gallery'
+                          ? 'Launch 6-Screen Altrium UI Gallery'
+                          : project.id === 'task-tracker-app'
+                          ? 'Launch 4-Screen Mint. App Gallery'
                           : 'Inspect Architecture & Details'}
                       </span>
                     </span>
@@ -245,6 +251,12 @@ export const ProjectsSection: React.FC = () => {
         <AltriumGalleryModal
           isOpen={isAltriumGalleryOpen}
           onClose={() => setIsAltriumGalleryOpen(false)}
+        />
+
+        {/* Dedicated 4-Screen Mint Task Tracker Walkthrough Modal */}
+        <TaskTrackerGalleryModal
+          isOpen={isTaskTrackerGalleryOpen}
+          onClose={() => setIsTaskTrackerGalleryOpen(false)}
         />
       </div>
     </section>

@@ -105,7 +105,10 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#656744] dark:text-[#B5BC7E] font-bold mb-1">
                 <span>ENTERPRISE SYSTEM ARCHITECTURE</span>
                 <span>•</span>
-                <span>ALTIUM SRI LANKA</span>
+                <span className="flex items-center gap-1 text-[#00D47E]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00D47E] animate-pulse" />
+                  DEPLOYED ON RAILWAY & VERCEL
+                </span>
               </div>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#241E22] dark:text-[#F7F2EA]">
                 Performance Tracker for Altrium
@@ -317,13 +320,27 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
           </div>
 
           {/* Modal Footer */}
-          <div className="mt-8 pt-4 border-t border-[#543244]/15 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <span className="text-xs font-mono text-neutral-500">
-              Stack: React 19 • Vite • Node.js Express 5 • MySQL (Sequelize) • Tailwind CSS • JWT & Multer
-            </span>
+          <div className="mt-8 pt-4 border-t border-[#543244]/15 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-xs font-mono">
+              <a
+                href="https://github.com/MxrkDxnl/Altrium.git"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[#543244] dark:text-[#E8A5C5] hover:underline font-semibold"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>GitHub: MxrkDxnl/Altrium</span>
+              </a>
+              <span className="text-neutral-400">•</span>
+              <span className="text-[#00D47E] font-semibold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00D47E]" />
+                Railway & Vercel
+              </span>
+            </div>
+
             <button
               onClick={onClose}
-              className="px-6 py-2.5 rounded-full bg-[#656744] hover:bg-[#4E5032] text-white text-xs font-mono font-bold transition-colors shadow-sm self-start sm:self-auto"
+              className="px-6 py-2.5 rounded-full bg-[#656744] hover:bg-[#4E5032] text-white text-xs font-mono font-bold transition-colors shadow-sm self-start sm:self-auto cursor-pointer"
             >
               Close Inspection
             </button>

@@ -44,49 +44,37 @@ export const ProjectMockup: React.FC<ProjectMockupProps> = ({ type }) => {
 
   if (type === 'laravel-tasks') {
     return (
-      <div className="w-full h-48 sm:h-56 bg-gradient-to-br from-[#1C201C] to-[#111612] rounded-2xl p-4 text-white overflow-hidden relative border border-[#656744]/40 shadow-inner flex flex-col justify-between group-hover:scale-[1.01] transition-transform duration-300">
-        {/* Header */}
-        <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[10px] font-mono text-neutral-400">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#FF2D20]" />
-            <span className="font-bold text-white">Laravel Kanban Board</span>
+      <div className="w-full h-48 sm:h-56 bg-neutral-900 rounded-2xl overflow-hidden relative border-2 border-[#656744]/30 shadow-md group-hover:border-[#656744] transition-all duration-300">
+        {/* Browser Chrome Header */}
+        <div className="bg-[#1C201C] px-3 py-1.5 flex items-center justify-between border-b border-white/10 z-10 relative">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+            <span className="ml-2 font-mono text-[10px] text-neutral-300 font-medium">mint.app / dashboard</span>
           </div>
-          <span className="px-2 py-0.5 rounded-full bg-[#656744]/30 text-[#D4DAA2] text-[9px] font-semibold">
-            PHP 8.2 • MySQL
+          <span className="px-2 py-0.5 rounded-full bg-[#00D47E]/20 text-[#00D47E] text-[9px] font-mono font-bold flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00D47E] animate-pulse" />
+            RAILWAY CLOUD
           </span>
         </div>
 
-        {/* 3 Kanban Columns */}
-        <div className="grid grid-cols-3 gap-2 my-auto">
-          <div className="bg-white/5 rounded-xl p-2 border border-white/10">
-            <span className="text-[9px] font-mono text-neutral-400 block mb-1">TO DO (2)</span>
-            <div className="bg-[#1F2520] p-1.5 rounded-lg border border-white/10 text-[9px]">
-              <span className="font-semibold block text-neutral-200">API Controller</span>
-              <span className="text-[8px] text-amber-400 font-mono">High Priority</span>
-            </div>
-          </div>
+        {/* Real Mint. Dashboard Screenshot */}
+        <div className="relative w-full h-[calc(100%-28px)] overflow-hidden bg-white">
+          <img
+            src="/projects/task-tracker/dashboard.png"
+            alt="Mint Task Tracker Dashboard"
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            style={{ filter: 'contrast(1.03) saturate(1.02)', imageRendering: '-webkit-optimize-contrast' }}
+          />
+          {/* Subtle gradient overlay to blend into card */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-          <div className="bg-white/5 rounded-xl p-2 border border-[#656744]/40">
-            <span className="text-[9px] font-mono text-[#D4DAA2] block mb-1">IN PROGRESS</span>
-            <div className="bg-[#656744]/25 p-1.5 rounded-lg border border-[#656744]/50 text-[9px]">
-              <span className="font-semibold block text-white">MySQL Query Opt</span>
-              <span className="text-[8px] text-emerald-300 font-mono">Eloquent ORM</span>
-            </div>
+          {/* Quick Real Screenshot Badge */}
+          <div className="absolute bottom-2.5 left-3 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-xs text-[10px] font-mono text-white flex items-center gap-1.5 border border-white/20">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>REAL APP UI • LARAVEL HERD</span>
           </div>
-
-          <div className="bg-white/5 rounded-xl p-2 border border-white/10">
-            <span className="text-[9px] font-mono text-emerald-400 block mb-1">DONE (8)</span>
-            <div className="bg-emerald-500/10 p-1.5 rounded-lg border border-emerald-500/30 text-[9px]">
-              <span className="font-semibold block text-neutral-200">Auth & Roles</span>
-              <span className="text-[8px] text-emerald-400 font-mono">Verified ✓</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-1 border-t border-white/5 text-[9px] font-mono text-neutral-400">
-          <span>Sprint Tasks Pipeline</span>
-          <span className="text-[#D4DAA2]">Blade Templates + REST</span>
         </div>
       </div>
     );
