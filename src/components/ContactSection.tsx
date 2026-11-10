@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Mail, Phone, MapPin, Send, Copy, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Copy, Check, X, CheckCircle2, AlertCircle, ExternalLink } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { MagneticButton } from './MagneticButton';
 
@@ -13,9 +13,51 @@ export const ContactSection: React.FC = () => {
     message: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'activation_needed' | 'error'>('idle');
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [copiedType, setCopiedType] = useState<string | null>(null);
+  const autoDismissTimer = useRef<NodeJS.Timeout | null>(null);
+
+  // Clear timer on unmount
+  useEffect(() => {
+    return () => {
+      if (autoDismissTimer.current) {
+        clearTimeout(autoDismissTimer.current);
+      }
+    };
+  }, []);
+
+  const clearFeedback = () => {
+    if (autoDismissTimer.current) {
+      clearTimeout(autoDismissTimer.current);
+      autoDismissTimer.current = null;
+    }
+    setStatus('idle');
+    setFeedbackMessage('');
+  };
+
+  const setDismissableFeedback = (
+    newStatus: 'success' | 'activation_needed' | 'error',
+    msg: string,
+    delayMs = 7000
+  ) => {
+    if (autoDismissTimer.current) {
+      clearTimeout(autoDismissTimer.current);
+    }
+    setStatus(newStatus);
+    setFeedbackMessage(msg);
+    autoDismissTimer.current = setTimeout(() => {
+      setStatus('idle');
+      setFeedbackMessage('');
+    }, delayMs);
+  };
+
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    if (status === 'success' || status === 'error' || status === 'activation_needed') {
+      clearFeedback();
+    }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleCopy = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
@@ -25,50 +67,71 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setStatus('error');
-      setFeedbackMessage('Please fill in your name, email, and message.');
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setDismissableFeedback('error', 'Please fill in your name, email, and message.', 5000);
       return;
     }
 
     setStatus('loading');
 
     try {
-      let res = await fetch('/api/contact', {
+      const res = await fetch('https://formsubmit.co/ajax/chetharaherath@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      }).catch(() => null);
-
-      if (!res || !res.ok) {
-        res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            access_key: 'b947f6a8-2081-4ebc-9e29-cbef36c84b12',
-            from_name: formData.name,
-            email: formData.email,
-            subject: formData.subject || 'Portfolio Inquiry',
-            message: formData.message,
-            to: 'chetharaherath@gmail.com'
-          }),
-        }).catch(() => null);
-      }
-
-      setStatus('success');
-      setFeedbackMessage('Message sent successfully! Chethara will reach out shortly.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-
-      confetti({
-        particleCount: 70,
-        spread: 60,
-        origin: { y: 0.8 },
-        colors: ['#543244', '#656744', '#F7F2EA']
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _subject: formData.subject
+            ? `[Portfolio Contact] ${formData.subject} - from ${formData.name}`
+            : `[Portfolio Contact] New Inquiry from ${formData.name}`,
+          message: formData.message,
+          _captcha: 'false',
+          _template: 'table',
+        }),
       });
+
+      const data = await res.json().catch(() => null);
+
+      if (data && (data.success === 'true' || data.success === true)) {
+        setDismissableFeedback(
+          'success',
+          "Message sent successfully! Delivered directly to Chethara's inbox.",
+          8000
+        );
+        setFormData({ name: '', email: '', subject: '', message: '' });
+
+        confetti({
+          particleCount: 70,
+          spread: 60,
+          origin: { y: 0.8 },
+          colors: ['#543244', '#656744', '#F7F2EA'],
+        });
+      } else if (
+        data &&
+        typeof data.message === 'string' &&
+        data.message.toLowerCase().includes('activation')
+      ) {
+        setDismissableFeedback(
+          'activation_needed',
+          "One-time setup: FormSubmit sent an 'Activate Form' link to chetharaherath@gmail.com. Check your inbox and click it once to receive all future messages directly!",
+          12000
+        );
+      } else {
+        setDismissableFeedback(
+          'error',
+          'Could not send message via form endpoint. Please use the direct email link below.',
+          8000
+        );
+      }
     } catch (err) {
-      setStatus('success');
-      setFeedbackMessage('Thank you! Your message has been recorded.');
-      confetti({ particleCount: 50, spread: 50, colors: ['#543244', '#656744'] });
+      setDismissableFeedback(
+        'error',
+        'Network error while sending. Please reach Chethara directly at chetharaherath@gmail.com.',
+        8000
+      );
     }
   };
 
@@ -250,7 +313,7 @@ export const ContactSection: React.FC = () => {
                     type="text"
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
                     placeholder="e.g. Jane Doe"
                     className="w-full px-4 py-3 rounded-xl bg-[#F7F2EA] dark:bg-white/5 border border-neutral-300/80 dark:border-white/10 text-sm focus:outline-none focus:border-[#543244] transition-colors"
                   />
@@ -264,7 +327,7 @@ export const ContactSection: React.FC = () => {
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
                     placeholder="jane@company.com"
                     className="w-full px-4 py-3 rounded-xl bg-[#F7F2EA] dark:bg-white/5 border border-neutral-300/80 dark:border-white/10 text-sm focus:outline-none focus:border-[#543244] transition-colors"
                   />
@@ -278,7 +341,7 @@ export const ContactSection: React.FC = () => {
                 <input
                   type="text"
                   value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  onChange={(e) => handleInputChange('subject', e.target.value)}
                   placeholder="Software Engineering Internship"
                   className="w-full px-4 py-3 rounded-xl bg-[#F7F2EA] dark:bg-white/5 border border-neutral-300/80 dark:border-white/10 text-sm focus:outline-none focus:border-[#543244] transition-colors"
                 />
@@ -292,23 +355,49 @@ export const ContactSection: React.FC = () => {
                   required
                   rows={4}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) => handleInputChange('message', e.target.value)}
                   placeholder="Hello Chethara..."
                   className="w-full px-4 py-3 rounded-xl bg-[#F7F2EA] dark:bg-white/5 border border-neutral-300/80 dark:border-white/10 text-sm focus:outline-none focus:border-[#543244] transition-colors resize-none"
                 />
               </div>
 
-              {feedbackMessage && (
-                <div
-                  className={`p-3 rounded-xl text-xs font-mono ${
-                    status === 'success'
-                      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20'
-                      : 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border border-rose-500/20'
-                  }`}
-                >
-                  {feedbackMessage}
-                </div>
-              )}
+              <AnimatePresence>
+                {feedbackMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    className={`p-3.5 rounded-xl text-xs font-mono flex items-start justify-between gap-3 ${
+                      status === 'success'
+                        ? 'bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20'
+                        : status === 'activation_needed'
+                        ? 'bg-amber-500/10 text-amber-900 dark:text-amber-300 border border-amber-500/20'
+                        : 'bg-rose-500/10 text-rose-800 dark:text-rose-300 border border-rose-500/20'
+                    }`}
+                  >
+                    <div className="flex items-start gap-2">
+                      {status === 'success' && (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                      )}
+                      {status === 'activation_needed' && (
+                        <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                      )}
+                      {status === 'error' && (
+                        <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
+                      )}
+                      <span className="leading-relaxed">{feedbackMessage}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={clearFeedback}
+                      className="p-1 rounded-md text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-black/5 dark:hover:bg-white/5 transition-colors shrink-0 cursor-pointer"
+                      title="Dismiss notice"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <MagneticButton
                 type="submit"
@@ -325,6 +414,21 @@ export const ContactSection: React.FC = () => {
                   </>
                 )}
               </MagneticButton>
+
+              <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-neutral-500 dark:text-neutral-400">
+                <span className="font-mono text-[11px]">Direct recipient: chetharaherath@gmail.com</span>
+                <a
+                  href={`mailto:${portfolioData.personal.email}?subject=${encodeURIComponent(
+                    formData.subject || 'Portfolio Inquiry'
+                  )}&body=${encodeURIComponent(
+                    formData.message || 'Hi Chethara,\n\nI came across your portfolio and would like to connect.'
+                  )}`}
+                  className="inline-flex items-center gap-1 hover:text-[#543244] dark:hover:text-[#EFE7DB] underline transition-colors"
+                >
+                  <span>Open in default email app</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </form>
           </div>
         </div>
