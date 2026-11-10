@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, GitPullRequest, Layers, Activity, FileText, ArrowUpRight } from 'lucide-react';
 import { AltriumGalleryModal } from './AltriumGalleryModal';
+import { MagneticButton } from './MagneticButton';
 
 export const AltriumDeepDive: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'sprint2' | 'sprint1' | 'stack'>('sprint2');
@@ -11,53 +12,77 @@ export const AltriumDeepDive: React.FC = () => {
     <section id="altrium" className="py-20 md:py-24 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#543244]/15 dark:border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#656744] font-semibold mb-2">
+            <motion.div
+              initial={{ opacity: 0, y: 14, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-white/5 border border-neutral-200/90 dark:border-white/10 text-xs font-mono tracking-widest uppercase text-[#656744] dark:text-[#B5BC7E] font-bold mb-3 shadow-2xs"
+            >
               <Activity className="w-3.5 h-3.5" />
-              <span>Flagship Agile Case Study</span>
-            </div>
-            <h2 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight">
+              <span>FLAGSHIP AGILE CASE STUDY</span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight block"
+            >
               Performance Tracker for Altrium
-            </h2>
-            <p className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-light">
-              A secure web-based employee performance and development tracker built for Altrium. Developed across two Agile sprints to support review assignments, 2-quarter PIP loops, Multer evidence submissions, compliance reports, and 6-role account administration.
-            </p>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-light"
+            >
+              A secure web-based employee performance and development tracker built for Altrium. Developed across two Agile sprints to support review assignments, 2-quarter PIP loops, evidence file uploads, compliance reports, and 6-role account administration.
+            </motion.p>
           </div>
 
-          <div className="flex items-center gap-2 bg-[#543244]/5 dark:bg-white/5 p-1.5 rounded-2xl border border-[#543244]/10 dark:border-white/10">
-            <button
-              onClick={() => setActiveTab('sprint2')}
-              className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
-                activeTab === 'sprint2'
-                  ? 'bg-[#543244] text-[#F7F2EA] shadow-xs'
-                  : 'text-neutral-600 dark:text-neutral-300 hover:text-[#543244]'
-              }`}
-            >
-              Sprint 2: Scrum Master
-            </button>
-            <button
-              onClick={() => setActiveTab('sprint1')}
-              className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
-                activeTab === 'sprint1'
-                  ? 'bg-[#656744] text-white shadow-xs font-semibold'
-                  : 'text-neutral-600 dark:text-neutral-300 hover:text-[#656744]'
-              }`}
-            >
-              Sprint 1: Dev & BA
-            </button>
-            <button
-              onClick={() => setActiveTab('stack')}
-              className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
-                activeTab === 'stack'
-                  ? 'bg-[#543244] text-[#F7F2EA] shadow-xs'
-                  : 'text-neutral-600 dark:text-neutral-300 hover:text-[#543244]'
-              }`}
-            >
-              Tech Architecture
-            </button>
+          <div className="flex items-center gap-1.5 bg-white dark:bg-white/5 p-1.5 rounded-2xl border border-neutral-200/90 dark:border-white/10 shadow-2xs">
+            {[
+              { id: 'sprint2' as const, label: 'Sprint 2: Scrum Master', color: 'bg-[#543244] dark:bg-[#CE8CAE]' },
+              { id: 'sprint1' as const, label: 'Sprint 1: Dev & BA', color: 'bg-[#656744] dark:bg-[#B5BC7E]' },
+              { id: 'stack' as const, label: 'Tech Architecture', color: 'bg-[#543244] dark:bg-[#CE8CAE]' },
+            ].map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative px-4 py-2 rounded-xl text-xs font-mono transition-colors duration-200 cursor-pointer ${
+                    isActive
+                      ? 'text-[#F7F2EA] dark:text-[#1A1618] font-bold'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-medium'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeAltriumTabPill"
+                      transition={{ type: 'spring', stiffness: 480, damping: 36 }}
+                      className={`absolute inset-0 rounded-xl shadow-xs -z-0 ${tab.color}`}
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
+
+        {/* Mobius Architectural Expanding Hairline Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="origin-left h-px bg-neutral-200/90 dark:bg-white/10 mb-10"
+        />
 
         {/* Tab Content */}
         <div className="mt-10">
@@ -217,7 +242,7 @@ export const AltriumDeepDive: React.FC = () => {
                             Tech Stack Formulation & Groundwork
                           </strong>
                           <span className="text-xs text-neutral-500 dark:text-neutral-400 font-light">
-                            Selected and justified the technical stack (React 19, Vite, Tailwind CSS, Express 5, MySQL via Sequelize, JWT, Multer) and initiated product scaffolding.
+                            Selected and justified the technical stack (React 19, Vite, Tailwind CSS, Express 5, MySQL via Sequelize, JWT) and initiated product scaffolding.
                           </span>
                         </div>
                       </div>
@@ -265,7 +290,7 @@ export const AltriumDeepDive: React.FC = () => {
                     <div className="space-y-3">
                       <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15">
                         <span className="text-xs font-semibold block text-white">Technology Stack Blueprint</span>
-                        <span className="text-[11px] text-white/80 font-light">React 19, Express 5, Sequelize ORM, MySQL, JWT, Multer</span>
+                        <span className="text-[11px] text-white/80 font-light">React 19, Express 5, Sequelize ORM, MySQL, JWT Auth</span>
                       </div>
                       <div className="p-3.5 rounded-2xl bg-white/10 border border-white/15">
                         <span className="text-xs font-semibold block text-white">Requirements & UML Models</span>
@@ -335,10 +360,10 @@ export const AltriumDeepDive: React.FC = () => {
                     SEC
                   </div>
                   <h4 className="font-serif text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
-                    JWT, Bcrypt & Multer
+                    JWT & Bcrypt Security
                   </h4>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
-                    JWT authentication, bcrypt password hashing, and Multer multipart pipelines for evidence file uploads.
+                    JWT authentication, bcrypt password hashing, and secure evidence file upload endpoints.
                   </p>
                 </div>
               </motion.div>
@@ -348,6 +373,7 @@ export const AltriumDeepDive: React.FC = () => {
 
         {/* Interactive 6-Screen Architecture & Live UI Walkthrough CTA */}
         <div
+          data-cursor="view"
           style={{ background: 'linear-gradient(135deg, #543244 0%, #3D2230 45%, #656744 100%)' }}
           className="mt-12 p-6 sm:p-8 rounded-3xl text-[#F7F2EA] flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl border border-white/20 relative overflow-hidden"
         >
@@ -363,13 +389,14 @@ export const AltriumDeepDive: React.FC = () => {
               Step through the actual deployed interfaces: Review Progress, Staggered Cycle Form Access, 2-Quarter PIP Engine, Confidential Tiered Tables, and Financial Year Rollover.
             </p>
           </div>
-          <button
+          <MagneticButton
             onClick={() => setIsGalleryOpen(true)}
-            className="shrink-0 px-6 py-3.5 rounded-full bg-[#F7F2EA] text-[#543244] font-mono text-xs font-bold hover:bg-white transition-all shadow-lg hover:scale-105 flex items-center gap-2 cursor-pointer"
+            strength={0.3}
+            className="shrink-0 px-6 py-3.5 rounded-full bg-[#F7F2EA] text-[#543244] font-mono text-xs font-bold hover:bg-white transition-all shadow-lg hover:shadow-xl flex items-center gap-2 cursor-pointer"
           >
             <span>Launch 6-Screen UI Gallery</span>
             <ArrowUpRight className="w-4 h-4" />
-          </button>
+          </MagneticButton>
         </div>
 
         {/* Gallery Modal */}

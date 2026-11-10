@@ -45,12 +45,12 @@ export const portfolioData = {
       title: "Performance Tracker for Altrium",
       subtitle: "Web-Based Employee Performance & Development System",
       category: "Enterprise Full-Stack",
-      tags: ["React 19", "Vite", "Node.js (Express 5)", "MySQL (Sequelize)", "Tailwind CSS", "JWT & Multer"],
+      tags: ["React 19", "Vite", "Node.js (Express 5)", "MySQL (Sequelize)", "Tailwind CSS", "JWT Auth"],
       description: "A secure, web-based employee performance and development tracker built for Altrium. Supports assigning and completing reviews, managing performance improvement plans (PIPs), submitting evidence deliverables, viewing reports and history archives, and administering user accounts across 6 defined access levels.",
       highlights: [
         "Frontend built with React 19, Vite, React Router, Axios, and Tailwind CSS design tokens",
         "Robust REST API powered by Node.js with Express 5, connecting to MySQL via Sequelize ORM (server.js)",
-        "Secure JWT-based authentication, bcrypt password hashing, and Multer file upload pipelines for evidence submissions",
+        "Secure JWT-based authentication, bcrypt password hashing, and secure file upload endpoints for review evidence",
         "Granular 6-role permission system defined in User.js (Admin, Operational Manager, HR Manager, Department Manager, Team Manager, Employee)",
         "Served as Developer & Business Analyst in Sprint 1, and elected Scrum Master in Sprint 2 (100% on-time delivery)"
       ],
@@ -64,20 +64,20 @@ export const portfolioData = {
     },
     {
       id: "task-tracker-app",
-      title: "Mint. — Task Tracker",
+      title: "Mint. - Task Tracker",
       subtitle: "Daily, Monthly & Yearly Productivity & Goal Engine",
       category: "Laravel Web App",
-      tags: ["PHP", "Laravel", "Laravel Herd", "Tailwind CSS", "MySQL", "Railway Cloud"],
+      tags: ["PHP", "Laravel 12", "Laravel Herd", "Tailwind CSS", "MySQL", "Railway Cloud"],
       description: "A minimalist personal productivity and task management platform named Mint. Empowers users to create, schedule, and track daily, monthly, and yearly goals. Features categorized progress tracking across Personal, Work, Study, and Health, Colombo weather integration, quick scratchpad notes, and profile security management.",
       highlights: [
         "Full task lifecycle management: schedule and track daily, monthly, and yearly tasks with priority tags",
         "Dynamic productivity insights measuring category-based completion rates (Personal, Work, Study, Health)",
-        "Engineered with PHP, Laravel, and Laravel Herd, leveraging Eloquent ORM relationships and MySQL migrations",
+        "Engineered with PHP, Laravel 12, and Laravel Herd, leveraging Eloquent ORM relationships and MySQL migrations",
         "Production-ready deployment configured and hosted on Railway with automated cloud delivery"
       ],
       role: "Full-Stack Laravel Developer",
       duration: "Completed Project",
-      metrics: "Deployed on Railway • Laravel Herd",
+      metrics: "Deployed on Railway • Laravel 12 & Herd",
       githubUrl: "https://github.com/chetharaherath-creator/task-tracker-app.git",
       featured: false,
       accentColor: "#656744",
@@ -85,20 +85,22 @@ export const portfolioData = {
     },
     {
       id: "sweet-bake",
-      title: "Sweet Bake Mobile",
-      subtitle: "Artisanal Bakery Discovery & Order Management",
-      category: "Flutter Mobile",
-      tags: ["Flutter", "Dart", "Material Design 3", "State Management", "Mobile UX"],
-      description: "A fluid, mobile-first culinary commerce and recipe platform built with Flutter and Dart. Offers seamless bakery item cataloguing, live shopping cart management, nutritional breakdowns, and customer ordering workflows.",
+      title: "SweetBake",
+      subtitle: "Android Dessert Recipe & Discovery Application with Firebase",
+      category: "Android & Flutter",
+      tags: ["Android", "Flutter", "Dart", "Firebase Auth", "Firestore", "REST API", "Material 3"],
+      description: "An Android-exclusive Flutter dessert recipe application that lets users create accounts, log in, discover sweet inspirations via an external dessert API, upload recipe photography, and manage their personal recipe collection with real-time Firebase Cloud Firestore persistence.",
       highlights: [
-        "Crafted custom 60fps Flutter micro-interactions, hero page transitions, and tactile product cards",
-        "Built responsive cart state management with real-time tax, delivery, and discount calculations",
-        "Structured clean architecture with separate data models, services, and reusable presentation widgets",
-        "Designed delightful bakery imagery presentation with dietary filter tags (Gluten-Free, Vegan, Custom Orders)"
+        "Firebase Authentication & Cloud Firestore integration providing real-time data synchronization across user accounts",
+        "External Dessert Discovery REST API integration fetching international baking recipes with dynamic search",
+        "Full Recipe Lifecycle (CRUD): clean mobile interface for creating, viewing, editing, deleting, and sharing sweet recipes",
+        "Camera & Gallery Integration enabling home bakers to take or upload custom photography directly for their recipes",
+        "Polished Material Design 3 UI with categorized tabs (Cakes, Cookies, Cheesecakes, Macarons) and ingredient checklists"
       ],
-      role: "Mobile Application Developer",
-      duration: "Completed",
-      metrics: "60 FPS Flutter Mobile Experience",
+      role: "Android (Flutter) & Firebase Developer",
+      duration: "Completed Project",
+      metrics: "Native Android • Firebase Firestore • External Dessert API",
+      githubUrl: "https://github.com/chetharaherath-creator/SweetBake.git",
       featured: false,
       accentColor: "#543244",
       mockupType: "sweet-bake"
@@ -146,7 +148,7 @@ export const portfolioData = {
       skills: [
         { name: "React.js", level: 92, featured: true },
         { name: "Next.js", level: 88, featured: true },
-        { name: "Laravel (PHP)", level: 90, featured: true },
+        { name: "Laravel 12 (PHP)", level: 90, featured: true },
         { name: "Tailwind CSS", level: 95, featured: true },
         { name: "Node.js", level: 85 },
         { name: "REST APIs", level: 92, featured: true }
@@ -211,6 +213,14 @@ export const portfolioData = {
       badge: "Undergraduate"
     },
     {
+      period: "2024",
+      role: "CIMA Strategic Studies (Coursework)",
+      organization: "Wisdom Business Academy",
+      type: "Business Strategy & Management Accounting",
+      description: "Completed comprehensive coursework covering strategic management accounting, enterprise risk, and organizational financial analysis (academic coursework; non-certified).",
+      badge: "Coursework"
+    },
+    {
       period: "2023",
       role: "GCE Advanced Level (Physical Science)",
       organization: "Holy Cross College, Gampaha",
@@ -223,7 +233,6 @@ export const portfolioData = {
   certifications: [
     { title: "React Certification", issuer: "Skyrec", year: "2026", badge: "Frontend Mastery" },
     { title: "Java Certification", issuer: "Epic Learn Platform", year: "2025", badge: "OOP & Architecture" },
-    { title: "CIMA Strategic Level", issuer: "Wisdom Business Academy", year: "2024", badge: "Finance & Strategy" },
     { title: "Diploma in Graphic Design", issuer: "IMBS Green University", year: "2018", badge: "Visual Arts & Layout" },
     { title: "Taekwondo Team Captain", issuer: "Holy Cross College", year: "Leadership", badge: "Discipline & Tenacity" },
   ],

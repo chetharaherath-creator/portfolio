@@ -64,3 +64,33 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #54324488;
 }
+
+/* High-visibility Smooth Scrollbar for Modals */
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(84, 50, 68, 0.45) transparent;
+  overscroll-behavior: contain;
+}
+.modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 12px 0;
+}
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(84, 50, 68, 0.4);
+  border-radius: 9999px;
+}
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(84, 50, 68, 0.75);
+}
+.dark .modal-scroll {
+  scrollbar-color: rgba(232, 165, 197, 0.45) transparent;
+}
+.dark .modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(232, 165, 197, 0.4);
+}
+.dark .modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 165, 197, 0.75);
+}

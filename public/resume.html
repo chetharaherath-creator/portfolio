@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chethara Herath - Software Engineering Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 6mm 11mm 5mm 11mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Times New Roman", Times, Georgia, serif;
+      color: #000000;
+      background: #ffffff;
+      line-height: 1.23;
+      font-size: 11pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .resume-container {
+      max-width: 188mm;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding-bottom: 3px;
+      border-bottom: 1.5px solid #000000;
+      margin-bottom: 5px;
+    }
+
+    .name {
+      font-size: 19.5pt;
+      font-weight: bold;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.05;
+    }
+
+    .title {
+      font-size: 11pt;
+      font-weight: bold;
+      color: #222222;
+      margin-top: 2px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px 7px;
+      margin-top: 3px;
+      font-size: 10pt;
+      color: #333333;
+    }
+
+    .contact-row a {
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .contact-row a:hover {
+      text-decoration: underline;
+    }
+
+    .separator {
+      color: #666666;
+      font-weight: normal;
+      margin: 0 1px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-top: 5.5px;
+    }
+
+    .section-title {
+      font-size: 13pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #000000;
+      border-bottom: 1px solid #333333;
+      padding-bottom: 1px;
+      margin-bottom: 3px;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 10.8pt;
+      color: #111111;
+      line-height: 1.23;
+      text-align: justify;
+    }
+
+    /* Skills Table */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.8pt;
+    }
+
+    .skills-table td {
+      padding: 0.8px 0;
+      vertical-align: top;
+    }
+
+    .skill-cat {
+      font-weight: bold;
+      color: #000000;
+      width: 172px;
+      white-space: nowrap;
+    }
+
+    .skill-list {
+      color: #222222;
+    }
+
+    /* Project Item */
+    .project-item {
+      margin-bottom: 4.5px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .item-title {
+      font-size: 11.5pt;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    .item-tagline {
+      font-size: 10.5pt;
+      font-style: italic;
+      color: #444444;
+      margin-left: 4px;
+    }
+
+    .item-date {
+      font-size: 9.8pt;
+      color: #555555;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .item-tech {
+      font-size: 10.2pt;
+      color: #555555;
+      font-style: italic;
+      margin-top: 0.5px;
+      margin-bottom: 1.5px;
+    }
+
+    /* Bullet List */
+    ul.item-bullets {
+      list-style-type: disc;
+      padding-left: 15px;
+      margin-top: 0.5px;
+    }
+
+    ul.item-bullets li {
+      font-size: 10.5pt;
+      color: #111111;
+      line-height: 1.22;
+      margin-bottom: 1px;
+    }
+
+    ul.item-bullets li strong {
+      font-weight: bold;
+      color: #000000;
+    }
+
+    /* Education Item */
+    .edu-item {
+      margin-bottom: 2.5px;
+    }
+
+    .edu-degree {
+      font-size: 11.5pt;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    .edu-inst {
+      font-size: 10.5pt;
+      color: #222222;
+    }
+
+    .edu-details {
+      font-size: 9.8pt;
+      color: #555555;
+      margin-top: 0.5px;
+    }
+
+    /* Two Column Bottom Grid */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .compact-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .compact-list li {
+      font-size: 10.2pt;
+      color: #111111;
+      line-height: 1.22;
+      margin-bottom: 0.8px;
+      position: relative;
+      padding-left: 10px;
+    }
+
+    .compact-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #555555;
+      font-weight: bold;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+      }
+      .resume-container {
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="name">Chethara Herath</h1>
+      <div class="title">Software Engineering Intern | Full-Stack, Mobile & Agile Delivery</div>
+      <div class="contact-row">
+        <span>Gampaha / Colombo, Sri Lanka</span>
+        <span class="separator">|</span>
+        <span><a href="tel:+94776432400">+94 77 643 2400</a></span>
+        <span class="separator">|</span>
+        <span><a href="mailto:chetharaherath@gmail.com">chetharaherath@gmail.com</a></span>
+        <span class="separator">|</span>
+        <span><a href="https://github.com/chetharaherath-creator" target="_blank">github.com/chetharaherath-creator</a></span>
+        <span class="separator">|</span>
+        <span><a href="https://linkedin.com/in/chethara-herath-51509b350" target="_blank">linkedin.com/in/chethara-herath</a></span>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section class="section">
+      <h2 class="section-title">Professional Summary</h2>
+      <p class="summary-text">
+        Software Engineering undergraduate at the University of Staffordshire (APIIT) with hands-on expertise architecting full-stack web, mobile, and cloud applications. Proven versatility bridging production engineering (React 19, Laravel 12, Flutter, Node.js) with Agile Scrum delivery (elected Scrum Master for Altrium with 100% on-time velocity), UML business analysis, and graphic design finesse (IMBS Diploma). Passionate about building reliable, human-centric software solutions.
+      </p>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="section">
+      <h2 class="section-title">Technical Skills</h2>
+      <table class="skills-table">
+        <tr>
+          <td class="skill-cat">Programming Languages:</td>
+          <td class="skill-list">JavaScript (ES6+), PHP, Dart, Python, Java, C#, SQL (MySQL), HTML5, CSS3</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Frameworks & Runtimes:</td>
+          <td class="skill-list">React 19, Node.js (Express 5), Laravel 12, Flutter, Tailwind CSS, Vite</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Cloud & Databases:</td>
+          <td class="skill-list">Firebase (Cloud Firestore, Authentication), MySQL (Sequelize, Eloquent), AWS, Railway Cloud</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Tools & Engineering:</td>
+          <td class="skill-list">Git & GitHub, Postman, Agile/Scrum (Jira), UML Class/Sequence Modeling, RESTful APIs</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">UI/UX & Graphic Design:</td>
+          <td class="skill-list">Figma (Interactive Systems), Adobe Photoshop, Illustrator, InDesign, CorelDRAW (IMBS Diploma)</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Featured Engineering Projects (Top 3 Signature Powerhouse Systems) -->
+    <section class="section">
+      <h2 class="section-title">Featured Engineering Projects</h2>
+
+      <!-- Altrium -->
+      <div class="project-item">
+        <div class="item-header">
+          <div>
+            <span class="item-title">Performance Tracker for Altrium</span>
+            <span class="item-tagline">- Enterprise Employee Review & PIP System</span>
+          </div>
+          <span class="item-date">4 Months | 2 Agile Sprints</span>
+        </div>
+        <div class="item-tech">React 19, Node.js, Express 5, MySQL (Sequelize), Tailwind CSS, JWT Auth, Agile Scrum</div>
+        <ul class="item-bullets">
+          <li>Served as <strong>Developer & Business Analyst in Sprint 1</strong> (authored SRS user stories, acceptance criteria, and UML models) and elected <strong>Scrum Master in Sprint 2</strong>, leading daily standups and burndown tracking to achieve 100% on-time delivery.</li>
+          <li>Engineered a granular <strong>6-role permission architecture</strong> (Admin to Employee) with secure JWT tokens, bcrypt password hashing, and evidence file upload handling for employee performance reviews and PIP tracking.</li>
+        </ul>
+      </div>
+
+      <!-- Mint. Task Tracker -->
+      <div class="project-item">
+        <div class="item-header">
+          <div>
+            <span class="item-title">Mint. - Personal Task & Goal Engine</span>
+            <span class="item-tagline">- Full-Stack Web Application</span>
+          </div>
+          <span class="item-date">Production Deployed</span>
+        </div>
+        <div class="item-tech">PHP, Laravel 12, Laravel Herd, Tailwind CSS, MySQL, Eloquent ORM, Railway Cloud</div>
+        <ul class="item-bullets">
+          <li>Architected a minimalist task productivity system supporting daily, monthly, and yearly goal lifecycle tracking across Personal, Work, Study, and Health categories with automated completion rate analytics.</li>
+          <li>Implemented relational database schemas using Laravel migrations and Eloquent ORM; deployed the production application to <strong>Railway Cloud</strong> with environment security governance.</li>
+        </ul>
+      </div>
+
+      <!-- SweetBake -->
+      <div class="project-item">
+        <div class="item-header">
+          <div>
+            <span class="item-title">SweetBake - Dessert Recipe & Discovery App</span>
+            <span class="item-tagline">- Native Android Mobile Application</span>
+          </div>
+          <span class="item-date">Android OS</span>
+        </div>
+        <div class="item-tech">Flutter, Dart, Google Cloud Firestore, Firebase Authentication, External REST API, Material Design 3</div>
+        <ul class="item-bullets">
+          <li>Built a native Android mobile platform integrating <strong>Firebase Authentication</strong> and real-time <strong>Cloud Firestore</strong> synchronization for user-owned recipe catalogs, preparation guides, and ingredient checklists.</li>
+          <li>Integrated an external dessert REST API with live keyword searching and categorized filter tabs (Cakes, Cookies, Cheesecakes), alongside camera and local gallery photo upload permissions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      <div class="edu-item">
+        <div class="item-header">
+          <span class="edu-degree">Bachelor of Engineering (BEng Hons) in Computer Software Engineering</span>
+          <span class="item-date">2024 - 2028 (Undergraduate)</span>
+        </div>
+        <div class="edu-inst">University of Staffordshire (APIIT Sri Lanka)</div>
+        <div class="edu-details">
+          <strong>Key Coursework:</strong> Advanced Programming, Data Structures & Algorithms, Cloud Infrastructure, Interface Design & UX, Distributed Systems, Computer Architecture.
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="item-header">
+          <span class="edu-degree">GCE Advanced Level - Physical Science Stream</span>
+          <span class="item-date">Completed 2023</span>
+        </div>
+        <div class="edu-inst">Holy Cross College, Gampaha • Combined Mathematics, Physics, Chemistry</div>
+      </div>
+    </section>
+
+    <!-- Bottom Grid: Certifications, Leadership & Languages -->
+    <section class="section">
+      <div class="two-col-grid">
+        <div>
+          <h2 class="section-title">Certifications & Leadership</h2>
+          <ul class="compact-list">
+            <li><strong>Agile Scrum Master & Developer</strong> - Altrium Project (100% on-time velocity)</li>
+            <li><strong>School Taekwondo Team Captain</strong> - Holy Cross College (Discipline & Resilience)</li>
+            <li><strong>Frontend Certification (React)</strong> - Skyrec (2026)</li>
+            <li><strong>Java Architecture Certification</strong> - Epic Learn Platform (2025)</li>
+            <li><strong>Diploma in Graphic Design</strong> - IMBS Green Campus (2018)</li>
+            <li><strong>CIMA Strategic Studies (Coursework)</strong> - Wisdom Business Academy (2024)</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="section-title">Languages & Additional Details</h2>
+          <ul class="compact-list">
+            <li><strong>English:</strong> Professional Working Proficiency</li>
+            <li><strong>Sinhala:</strong> Native / Bilingual Proficiency</li>
+            <li><strong>Availability:</strong> Immediate / Software Engineering Internship</li>
+            <li><strong>Work Authorization:</strong> Citizen of Sri Lanka (Open to Hybrid / Remote)</li>
+            <li><strong>Secondary Education:</strong> GCE O/L (2019) - Holy Cross College, Gampaha</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

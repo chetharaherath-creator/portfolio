@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, Layers, ExternalLink, Calendar, Database, CreditCard, Moon, Sun, Sparkles } from 'lucide-react';
+import { X, CheckCircle, Layers, ExternalLink, Calendar, Database, CreditCard, Moon, Sun } from 'lucide-react';
+import { getAssetUrl } from '../utils/asset';
 
 interface FinanceGalleryModalProps {
   isOpen: boolean;
@@ -9,6 +10,18 @@ interface FinanceGalleryModalProps {
 
 export const FinanceGalleryModal: React.FC<FinanceGalleryModalProps> = ({ isOpen, onClose }) => {
   const [selectedScreenIndex, setSelectedScreenIndex] = useState(0);
+
+  // Prevent background scrolling while modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const screens = [
     {
@@ -55,13 +68,21 @@ export const FinanceGalleryModal: React.FC<FinanceGalleryModalProps> = ({ isOpen
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-sm">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm"
+        data-lenis-prevent
+        onClick={onClose}
+      >
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          data-lenis-prevent
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.25 }}
-          className="relative w-full max-w-5xl bg-[#F7F2EA] dark:bg-[#1D181B] rounded-3xl p-5 sm:p-8 shadow-2xl border-2 border-[#543244]/30 dark:border-white/15 my-6 max-h-[92vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+          className="relative w-full max-w-5xl bg-[#F7F2EA] dark:bg-[#1D181B] rounded-3xl p-5 sm:p-8 shadow-2xl border-2 border-[#543244]/30 dark:border-white/15 my-auto max-h-[88vh] overflow-y-auto overscroll-contain modal-scroll"
         >
           {/* Top Sticky Header */}
           <div className="flex items-start justify-between pb-4 border-b border-[#543244]/15 dark:border-white/10 pr-10">
@@ -138,7 +159,7 @@ export const FinanceGalleryModal: React.FC<FinanceGalleryModalProps> = ({ isOpen
               <AnimatePresence mode="wait">
                 <motion.img
                   key={current.id}
-                  src={current.image}
+                  src={getAssetUrl(current.image)}
                   alt={current.title}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -204,8 +225,8 @@ export const FinanceGalleryModal: React.FC<FinanceGalleryModalProps> = ({ isOpen
 
               {/* Pillar 3 */}
               <div className="p-4 rounded-2xl bg-white dark:bg-white/5 border border-[#543244]/20 space-y-1.5">
-                <span className="text-[10px] font-mono uppercase font-bold text-[#656744] dark:text-[#B5BC7E] flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <span className="text-[10px] font-mono uppercase font-bold text-[#656744] dark:text-[#B5BC7E] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E]" />
                   Daily Advice & Behavioral Feedback
                 </span>
                 <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">

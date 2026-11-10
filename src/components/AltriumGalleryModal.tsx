@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle, ShieldCheck, ChevronRight, Layers, Award, ExternalLink, Calendar, Users, EyeOff } from 'lucide-react';
+import { getAssetUrl } from '../utils/asset';
 
 interface AltriumGalleryModalProps {
   isOpen: boolean;
@@ -9,6 +10,18 @@ interface AltriumGalleryModalProps {
 
 export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen, onClose }) => {
   const [selectedScreenIndex, setSelectedScreenIndex] = useState(0);
+
+  // Prevent background scrolling while modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const screens = [
     {
@@ -91,13 +104,21 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-sm">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm"
+        data-lenis-prevent
+        onClick={onClose}
+      >
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          data-lenis-prevent
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.25 }}
-          className="relative w-full max-w-5xl bg-[#F7F2EA] dark:bg-[#1D181B] rounded-3xl p-5 sm:p-8 shadow-2xl border-2 border-[#656744]/30 dark:border-white/15 my-6 max-h-[92vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+          className="relative w-full max-w-5xl bg-[#F7F2EA] dark:bg-[#1D181B] rounded-3xl p-5 sm:p-8 shadow-2xl border-2 border-[#656744]/30 dark:border-white/15 my-auto max-h-[88vh] overflow-y-auto overscroll-contain modal-scroll"
         >
           {/* Top Sticky Header */}
           <div className="flex items-start justify-between pb-4 border-b border-[#543244]/15 dark:border-white/10 pr-10">
@@ -114,7 +135,7 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                 Performance Tracker for Altrium
               </h2>
               <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-light mt-0.5">
-                React 19 & Vite • Node.js (Express 5) • MySQL & Sequelize • JWT, Bcrypt & Multer
+                React 19 & Vite • Node.js (Express 5) • MySQL & Sequelize • JWT & Bcrypt
               </p>
             </div>
 
@@ -174,7 +195,7 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
               <AnimatePresence mode="wait">
                 <motion.img
                   key={current.id}
-                  src={current.image}
+                  src={getAssetUrl(current.image)}
                   alt={current.title}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -279,7 +300,7 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                   The 2-Quarter Actionable PIP Loop
                 </span>
                 <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
-                  Peer skill gaps trigger database alerts for managers to issue time-bound Personal Improvement Plans (PIPs). Employees have exactly 2 quarters to complete milestones and submit evidence via Multer, with flexible PDPs available for ongoing development.
+                  Peer skill gaps trigger database alerts for managers to issue time-bound Personal Improvement Plans (PIPs). Employees have exactly 2 quarters to complete milestones and submit evidence deliverables, with flexible PDPs available for ongoing development.
                 </p>
               </div>
 
@@ -302,7 +323,7 @@ export const AltriumGalleryModal: React.FC<AltriumGalleryModalProps> = ({ isOpen
                 <span>Codebase Architecture & Route Wiring</span>
               </span>
               <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
-                <strong>Backend & Data Layer:</strong> The REST API controllers and MySQL connection are orchestrated in <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">server.js</code>, with models defined via Sequelize in <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">User.js</code>. Authentication relies on JWT tokens and bcrypt password hashing, with multipart evidence attachments handled by Multer.<br />
+                <strong>Backend & Data Layer:</strong> The REST API controllers and MySQL connection are orchestrated in <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">server.js</code>, with models defined via Sequelize in <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">User.js</code>. Authentication relies on JWT tokens and bcrypt password hashing, with file upload endpoints supporting review attachments.<br />
                 <strong>Routing & Access Observation:</strong> Route protection and client navigation are coordinated between <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">App.jsx</code> and <code className="px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-white/10 font-mono text-[11px]">Sidebar.jsx</code>. While six roles are defined, navigational access reflects distinct route-grouping behaviors across views.
               </p>
             </div>

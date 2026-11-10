@@ -1,8 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowDownRight, Sparkles, Clock, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ArrowDownRight, Clock, ArrowRight, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { InteractiveBadge } from './InteractiveBadge';
+import { MagneticButton } from './MagneticButton';
+import { PlayfulPortfolioHeader } from './PlayfulPortfolioHeader';
+import { getAssetUrl } from '../utils/asset';
+
+// Helper component for smooth kinetic rolling number counters
+const AnimatedStatValue: React.FC<{ value: string }> = ({ value }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-20px' });
+  const [displayValue, setDisplayValue] = useState<string>('0');
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    // Check if value starts with a number (e.g., "100%", "4", "3 Roles")
+    const match = value.match(/^(\d+)(.*)$/);
+    if (!match) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const targetNum = parseInt(match[1], 10);
+    const suffix = match[2]; // e.g. "%", "+", or " Roles"
+
+    const startTime = performance.now();
+    const duration = 1400; // ms
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutExpo curve for buttery deceleration
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.round(ease * targetNum);
+      setDisplayValue(`${current}${suffix}`);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
+  }, [isInView, value]);
+
+  return <span ref={ref}>{displayValue}</span>;
+};
 
 export const Hero: React.FC = () => {
   const [sriLankaTime, setSriLankaTime] = useState<string>('');
@@ -32,8 +76,13 @@ export const Hero: React.FC = () => {
       <div className="absolute top-1/3 -right-20 w-80 h-80 rounded-full bg-[#656744]/10 dark:bg-[#B5BC7E]/10 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Top Status Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#543244]/15 dark:border-white/10 text-xs font-mono text-neutral-600 dark:text-neutral-400">
+        {/* Top Status Bar with Swiss Hairline Border */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-neutral-200/90 dark:border-white/10 text-xs font-mono text-neutral-600 dark:text-neutral-400"
+        >
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
             <span className="tracking-wider uppercase">Sri Lanka (GMT+5:30)</span>
@@ -52,70 +101,157 @@ export const Hero: React.FC = () => {
               Available for Internships
             </span>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Playful Behance Header Banner */}
+        <PlayfulPortfolioHeader />
+
+        {/* Architectural Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="origin-left h-px bg-neutral-200/90 dark:bg-white/10 my-6 md:my-8"
+        />
 
         {/* Main Grid: Left Story & Right 3D Interactive Lanyard Badge */}
-        <div className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="mt-6 md:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Headlines & Actions (7 cols) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
+            {/* Minimalist Kicker Badge in Pure White */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-white/5 text-[#543244] dark:text-[#E8A5C5] text-xs font-mono font-semibold mb-6 border border-neutral-200/90 dark:border-white/10 shadow-2xs w-fit"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#543244]/10 dark:bg-[#CE8CAE]/20 text-[#543244] dark:text-[#E8A5C5] text-xs font-mono font-semibold mb-6 border border-[#543244]/20 dark:border-[#CE8CAE]/30">
-                <Sparkles className="w-3.5 h-3.5 text-[#656744] dark:text-[#B5BC7E]" />
-                <span>SOFTWARE ENGINEERING & FULL-STACK DEVELOPMENT</span>
-              </div>
-
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.12] text-[#241E22] dark:text-[#F4EFEA]">
-                Developing Scalable Systems with <span className="italic font-medium text-[#543244] dark:text-[#E8A5C5]">Engineering Precision</span> & Design Craft.
-              </h1>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E]" />
+              <span>SOFTWARE ENGINEERING // FULL-STACK ARCHITECTURE</span>
             </motion.div>
 
+            {/* Editorial Masked Headline Lines (Mobius Awwwards Standard) */}
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.12] text-[#241E22] dark:text-[#F4EFEA]">
+              <div className="overflow-hidden pb-1 sm:pb-1.5">
+                <motion.span
+                  initial={{ y: '115%', rotate: 1.2, opacity: 0 }}
+                  animate={{ y: '0%', rotate: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.85,
+                    delay: 0.12,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="block"
+                >
+                  Developing Scalable Systems
+                </motion.span>
+              </div>
+
+              <div className="overflow-hidden pb-1 sm:pb-1.5">
+                <motion.span
+                  initial={{ y: '115%', rotate: 1.2, opacity: 0 }}
+                  animate={{ y: '0%', rotate: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.85,
+                    delay: 0.24,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="block"
+                >
+                  with{' '}
+                  <span className="italic font-medium text-[#543244] dark:text-[#E8A5C5]">
+                    Engineering Precision
+                  </span>
+                </motion.span>
+              </div>
+
+              <div className="overflow-hidden pb-1 sm:pb-1.5">
+                <motion.span
+                  initial={{ y: '115%', rotate: 1.2, opacity: 0 }}
+                  animate={{ y: '0%', rotate: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.85,
+                    delay: 0.36,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="block"
+                >
+                  & Agile Leadership.
+                </motion.span>
+              </div>
+            </h1>
+
+            {/* Subtitle with Staggered Reveal */}
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 font-sans leading-relaxed max-w-xl font-light"
             >
-              I am <strong className="font-semibold text-[#543244] dark:text-[#F4EFEA]">Chethara Herath</strong> — a Software Engineering undergraduate at the University of Staffordshire (APIIT). I build web, mobile, and desktop systems backed by clean architecture, Agile Scrum leadership, and graphic design finesse.
+              I am <strong className="font-semibold text-[#543244] dark:text-[#F4EFEA]">Chethara Herath</strong> - a Software Engineering undergraduate at the University of Staffordshire (APIIT). I build web, mobile, and cloud systems backed by clean architecture, Agile Scrum leadership, and graphic design finesse.
             </motion.p>
 
-            {/* CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
+            {/* CTAs with Magnetic Physics */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.58, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <MagneticButton
                 href="#altrium"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#543244] dark:bg-[#CE8CAE] text-[#F7F2EA] dark:text-[#1A1618] font-sans font-semibold text-sm shadow-md transition-all duration-200 hover:opacity-90"
+                strength={0.3}
+                className="group px-7 py-3.5 rounded-full bg-[#543244] dark:bg-[#CE8CAE] text-[#F7F2EA] dark:text-[#1A1618] font-sans font-semibold text-sm shadow-md transition-all duration-200 hover:opacity-95 hover:shadow-lg gap-2"
               >
                 <span>Explore Altrium Case Study</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </MagneticButton>
 
-              <a
+              <MagneticButton
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white dark:bg-[#1D181B] text-[#241E22] dark:text-[#F4EFEA] font-sans font-medium text-sm border border-[#543244]/20 dark:border-white/10 hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all"
+                strength={0.3}
+                className="group px-6 py-3.5 rounded-full bg-white dark:bg-[#1D181B] text-[#241E22] dark:text-[#F4EFEA] font-sans font-medium text-sm border border-neutral-300/80 dark:border-white/10 hover:border-[#656744] dark:hover:border-[#B5BC7E] transition-all hover:shadow-sm shadow-2xs gap-2"
               >
                 <span>Browse 4 Featured Works</span>
-                <ArrowDownRight className="w-4 h-4 text-neutral-400" />
-              </a>
-            </div>
+                <ArrowDownRight className="w-4 h-4 text-neutral-400 group-hover:text-[#656744] transition-colors" />
+              </MagneticButton>
 
-            {/* Quick Credentials Strip with Vivid Focal Points */}
-            <div className="mt-10 grid grid-cols-3 gap-3 pt-6 border-t border-[#543244]/15 dark:border-white/10 max-w-xl">
-              <div className="p-3.5 rounded-2xl bg-white/80 dark:bg-[#1D181B] border border-[#543244]/10 dark:border-white/10 hover:border-[#543244]/30 transition-colors">
-                <span className="text-[10px] font-mono text-neutral-500 uppercase block">Education</span>
-                <span className="text-xs font-semibold text-[#543244] dark:text-[#E8A5C5]">BEng Software Eng</span>
+              <a
+                href={getAssetUrl('/Chethara_Herath_Resume.pdf')}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Download Chethara Herath's Resume (PDF)"
+                className="group px-5 py-3.5 rounded-full bg-white/60 dark:bg-white/5 text-[#543244] dark:text-[#E8A5C5] font-sans font-semibold text-sm border border-[#543244]/25 dark:border-white/15 hover:border-[#543244] dark:hover:border-white/40 hover:bg-white dark:hover:bg-white/10 transition-all shadow-2xs gap-2 inline-flex items-center cursor-pointer"
+              >
+                <FileText className="w-4 h-4" />
+                <span>Download CV</span>
+              </a>
+            </motion.div>
+
+            {/* Quick Credentials Strip with Pure White Swiss Cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.68, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-10 grid grid-cols-3 gap-3 pt-6 border-t border-neutral-200/90 dark:border-white/10 max-w-xl"
+            >
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#1D181B] border border-neutral-200/90 dark:border-white/10 hover:border-[#543244]/30 transition-colors shadow-2xs">
+                <span className="text-[10px] font-mono text-neutral-500 uppercase block tracking-wider font-semibold">Education</span>
+                <span className="text-xs font-bold text-[#543244] dark:text-[#E8A5C5] block mt-0.5">BEng Software Eng</span>
+                <span className="text-[9.5px] font-mono text-neutral-400 dark:text-neutral-500 block">APIIT / Staffordshire</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-[#656744]/10 dark:bg-[#656744]/20 border border-[#656744]/30 transition-colors">
-                <span className="text-[10px] font-mono text-[#656744] dark:text-[#B5BC7E] uppercase block font-bold">Agile Versatility</span>
-                <span className="text-xs font-bold text-[#4B4D2F] dark:text-[#D5DBA6]">Dev • BA • Scrum Master</span>
+
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#1D181B] border border-neutral-200/90 dark:border-white/10 hover:border-[#656744]/40 transition-colors shadow-2xs">
+                <span className="text-[10px] font-mono text-[#656744] dark:text-[#B5BC7E] uppercase block font-bold tracking-wider">Agile Versatility</span>
+                <span className="text-xs font-bold text-[#4B4D2F] dark:text-[#D5DBA6] block mt-0.5">Dev • BA • Scrum</span>
+                <span className="text-[9.5px] font-mono text-neutral-400 dark:text-neutral-500 block">Sprint 2 Lead (100%)</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/30 transition-colors">
-                <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 uppercase block font-semibold">Leadership</span>
-                <span className="text-xs font-bold text-amber-700 dark:text-amber-300">Taekwondo Captain</span>
+
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#1D181B] border border-neutral-200/90 dark:border-white/10 hover:border-amber-500/40 transition-colors shadow-2xs">
+                <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400 uppercase block font-bold tracking-wider">Leadership</span>
+                <span className="text-xs font-bold text-amber-700 dark:text-amber-300 block mt-0.5">Taekwondo Captain</span>
+                <span className="text-[9.5px] font-mono text-neutral-400 dark:text-neutral-500 block">IMBS Graphic Design</span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Column: 3D Interactive Lanyard Developer Badge (5 cols) */}
@@ -124,20 +260,28 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Stats Row */}
-        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 pt-10 border-t border-[#543244]/15 dark:border-white/10">
+        {/* Animated Rolling Stats Row (Pure White Swiss Cards) */}
+        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 pt-10 border-t border-neutral-200/90 dark:border-white/10">
           {portfolioData.stats.map((stat, i) => (
-            <div key={i} className="p-4 rounded-2xl bg-white/70 dark:bg-[#1D181B] border border-[#543244]/10 dark:border-white/10">
-              <div className="font-serif text-2xl sm:text-3xl font-semibold text-[#543244] dark:text-[#E8A5C5]">
-                {stat.value}
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="p-5 rounded-2xl bg-white dark:bg-[#1D181B] border border-neutral-200/90 dark:border-white/10 shadow-2xs hover:shadow-md hover:border-[#656744]/40 transition-all"
+            >
+              <div className="font-serif text-3xl sm:text-4xl font-semibold text-[#543244] dark:text-[#E8A5C5] tracking-tight">
+                <AnimatedStatValue value={stat.value} />
               </div>
-              <div className="text-xs font-semibold text-neutral-800 dark:text-neutral-200 mt-1 font-sans">
+              <div className="text-xs font-bold text-neutral-900 dark:text-neutral-100 mt-1 font-sans">
                 {stat.label}
               </div>
               <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono mt-0.5">
                 {stat.detail}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

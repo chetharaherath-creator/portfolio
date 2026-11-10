@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Globe, Smartphone, Palette, Cpu, Sparkles } from 'lucide-react';
+import { Code, Globe, Smartphone, Palette, Cpu } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const SkillsMarquee: React.FC = () => {
@@ -20,21 +20,48 @@ export const SkillsMarquee: React.FC = () => {
 
   return (
     <section id="skills" className="py-20 md:py-24 overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#543244]/15 dark:border-white/10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#656744] dark:text-[#B5BC7E] font-bold mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Full-Spectrum Competency</span>
-            </div>
-            <h2 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-white/5 border border-neutral-200/90 dark:border-white/10 text-xs font-mono tracking-widest uppercase text-[#656744] dark:text-[#B5BC7E] font-bold mb-3 shadow-2xs"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E]" />
+              <span>FULL-SPECTRUM COMPETENCY</span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: 0.08 }}
+              className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight"
+            >
               Skills & Tech Stack
-            </h2>
-            <p className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl font-light">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: 0.16 }}
+              className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl font-light"
+            >
               A balanced synthesis of software engineering discipline and visual graphic design artistry.
-            </p>
+            </motion.p>
           </div>
         </div>
+
+        {/* Mobius Architectural Expanding Hairline Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="origin-left h-px bg-neutral-200/90 dark:bg-white/10 mb-4"
+        />
       </div>
 
       {/* Infinite Dual Marquee Tickers (Row 1: Plum Velvet • Row 2: Rich Olive Drab) */}

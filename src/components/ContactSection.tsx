@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Mail, Phone, MapPin, Send, Copy, Check, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Copy, Check } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { MagneticButton } from './MagneticButton';
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -71,22 +73,49 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-24 relative">
+    <section id="contact" className="py-20 md:py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#543244]/15 dark:border-white/10 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#656744] font-semibold mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Direct Communication</span>
-            </div>
-            <h2 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight">
+            <motion.div
+              initial={{ opacity: 0, y: 14, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-white/5 border border-neutral-200/90 dark:border-white/10 text-xs font-mono tracking-widest uppercase text-[#656744] dark:text-[#B5BC7E] font-bold mb-3 shadow-2xs"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E]" />
+              <span>DIRECT COMMUNICATION</span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight block"
+            >
               Let's Connect
-            </h2>
-            <p className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl font-light">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl font-light"
+            >
               Available for Software Engineering Internships, full-stack development, and collaborative projects.
-            </p>
+            </motion.p>
           </div>
         </div>
+
+        {/* Mobius Architectural Expanding Hairline Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="origin-left h-px bg-neutral-200/90 dark:bg-white/10 mb-12"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Contact Details (5 cols) */}
@@ -281,10 +310,11 @@ export const ContactSection: React.FC = () => {
                 </div>
               )}
 
-              <button
+              <MagneticButton
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full py-3.5 rounded-xl bg-[#543244] hover:bg-[#3C1F2F] text-[#F7F2EA] font-sans font-medium text-sm shadow-xs transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                strength={0.2}
+                className="w-full py-3.5 rounded-xl bg-[#543244] hover:bg-[#3C1F2F] text-[#F7F2EA] font-sans font-medium text-sm shadow-xs transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
               >
                 {status === 'loading' ? (
                   <span>Sending...</span>
@@ -294,7 +324,7 @@ export const ContactSection: React.FC = () => {
                     <Send className="w-4 h-4" />
                   </>
                 )}
-              </button>
+              </MagneticButton>
             </form>
           </div>
         </div>

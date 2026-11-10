@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, Check, Sparkles } from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const ColorPaletteWidget: React.FC = () => {
@@ -17,7 +17,7 @@ export const ColorPaletteWidget: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#686B46] font-semibold mb-2">
-            <Sparkles className="w-3.5 h-3.5" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#686B46]" />
             <span>Harmonized Palette System</span>
           </div>
           <h3 className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-[#593649] dark:text-[#F6EFE5]">

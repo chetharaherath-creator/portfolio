@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, ShieldCheck, Layers, ExternalLink, Calendar, Cloud, BarChart3, Sparkles } from 'lucide-react';
+import { X, CheckCircle, ShieldCheck, Layers, ExternalLink, Calendar, Cloud, BarChart3 } from 'lucide-react';
+import { getAssetUrl } from '../utils/asset';
 
 interface TaskTrackerGalleryModalProps {
   isOpen: boolean;
@@ -9,6 +10,18 @@ interface TaskTrackerGalleryModalProps {
 
 export const TaskTrackerGalleryModal: React.FC<TaskTrackerGalleryModalProps> = ({ isOpen, onClose }) => {
   const [selectedScreenIndex, setSelectedScreenIndex] = useState(0);
+
+  // Prevent background scrolling while modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const screens = [
     {
@@ -67,13 +80,21 @@ export const TaskTrackerGalleryModal: React.FC<TaskTrackerGalleryModalProps> = (
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/75 backdrop-blur-sm">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm"
+        data-lenis-prevent
+        onClick={onClose}
+      >
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          data-lenis-prevent
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.25 }}
-          className="relative w-full max-w-5xl bg-[#F7F2EA] dark:bg-[#1D181B] rounded-3xl p-5 sm:p-8 shadow-2xl border-2 border-[#656744]/30 dark:border-white/15 my-6 max-h-[92vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+          className="relative w-full max-w-5xl bg-[#F7F2EA] dark:bg-[#1D181B] rounded-3xl p-5 sm:p-8 shadow-2xl border-2 border-[#656744]/30 dark:border-white/15 my-auto max-h-[88vh] overflow-y-auto overscroll-contain modal-scroll"
         >
           {/* Top Sticky Header */}
           <div className="flex items-start justify-between pb-4 border-b border-[#543244]/15 dark:border-white/10 pr-10">
@@ -87,10 +108,10 @@ export const TaskTrackerGalleryModal: React.FC<TaskTrackerGalleryModalProps> = (
                 </span>
               </div>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#241E22] dark:text-[#F7F2EA]">
-                Mint. — Task Tracker
+                Mint. - Task Tracker
               </h2>
               <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-light mt-0.5">
-                PHP • Laravel • Laravel Herd • Tailwind CSS • MySQL • Railway Cloud
+                PHP • Laravel 12 • Laravel Herd • Tailwind CSS • MySQL • Railway Cloud
               </p>
             </div>
 
@@ -150,7 +171,7 @@ export const TaskTrackerGalleryModal: React.FC<TaskTrackerGalleryModalProps> = (
               <AnimatePresence mode="wait">
                 <motion.img
                   key={current.id}
-                  src={current.image}
+                  src={getAssetUrl(current.image)}
                   alt={current.title}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
