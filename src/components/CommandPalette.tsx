@@ -19,7 +19,9 @@ import {
   Smartphone,
   X,
   Check,
+  PlayCircle,
 } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData';
 import { getAssetUrl } from '../utils/asset';
 
 const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
@@ -55,6 +57,7 @@ interface CommandPaletteProps {
   onToggleDarkMode: () => void;
   gridActive: boolean;
   onToggleGrid: () => void;
+  onReplayPreloader?: () => void;
   onOpenAltriumGallery?: () => void;
   onOpenMintGallery?: () => void;
   onOpenFinanceGallery?: () => void;
@@ -68,6 +71,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onToggleDarkMode,
   gridActive,
   onToggleGrid,
+  onReplayPreloader,
   onOpenAltriumGallery,
   onOpenMintGallery,
   onOpenFinanceGallery,
@@ -183,22 +187,36 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       },
     },
     {
+      id: 'act-replay-preloader',
+      title: 'Replay 3D Character Preloader',
+      category: 'Actions',
+      subtitle: 'Watch the walking avatar intro with 0% → 100% counter',
+      icon: <PlayCircle className="w-4 h-4 text-[#656744] dark:text-[#B5BC7E]" />,
+      keywords: ['preloader', 'intro', 'avatar', 'character', 'animation', 'walk', 'dog'],
+      action: () => {
+        onClose();
+        if (onReplayPreloader) {
+          onReplayPreloader();
+        }
+      },
+    },
+    {
       id: 'act-copy-email',
       title: 'Copy Email Address',
       category: 'Actions',
-      subtitle: 'chetharaherath2004@gmail.com',
+      subtitle: portfolioData.personal.email,
       icon: <Copy className="w-4 h-4 text-neutral-500" />,
       keywords: ['copy', 'email', 'gmail', 'mail'],
-      action: () => copyToClipboard('chetharaherath2004@gmail.com', 'email address'),
+      action: () => copyToClipboard(portfolioData.personal.email, 'email address'),
     },
     {
       id: 'act-copy-phone',
       title: 'Copy Phone Number',
       category: 'Actions',
-      subtitle: '+94 71 859 9345 (Sri Lanka)',
+      subtitle: `${portfolioData.personal.phoneFormatted} (Sri Lanka)`,
       icon: <Phone className="w-4 h-4 text-neutral-500" />,
       keywords: ['copy', 'phone', 'whatsapp', 'call'],
-      action: () => copyToClipboard('+94 71 859 9345', 'phone number'),
+      action: () => copyToClipboard(portfolioData.personal.phone, 'phone number'),
     },
 
     // --- CASE STUDIES ---

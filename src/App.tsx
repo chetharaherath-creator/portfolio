@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import AltriumDeepDive from './components/AltriumDeepDive';
@@ -14,8 +14,10 @@ import { Footer } from './components/Footer';
 import { GridOverlay } from './components/GridOverlay';
 import { CommandPalette } from './components/CommandPalette';
 import { CustomCursor } from './components/CustomCursor';
+import { SitePreloader } from './components/SitePreloader';
 
 export function App() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [gridActive, setGridActive] = useState<boolean>(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
@@ -82,6 +84,13 @@ export function App() {
 
   return (
     <div className={`min-h-screen relative font-sans bg-[#F7F2EA] dark:bg-[#121011] text-[#241E22] dark:text-[#F4EFEA] transition-colors duration-300 ${gridActive ? 'mobius-grid-active' : ''}`}>
+      {/* 3D Character Walking Preloader with 0% -> 100% Counter */}
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <SitePreloader onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
       {/* Interactive Magnetic Custom Cursor */}
       <CustomCursor />
 
@@ -102,6 +111,7 @@ export function App() {
         onToggleDarkMode={() => setDarkMode(!darkMode)}
         gridActive={gridActive}
         onToggleGrid={() => setGridActive(!gridActive)}
+        onReplayPreloader={() => setIsLoading(true)}
       />
 
       {/* Floating Header */}
