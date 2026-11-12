@@ -8,7 +8,6 @@ interface SitePreloaderProps {
 
 export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
-  const [statusText, setStatusText] = useState('INITIALIZING EXPERIENCE');
 
   useEffect(() => {
     // Smooth progress counter targeting ~2.4 seconds total duration
@@ -22,16 +21,6 @@ export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
       // Natural ease-out progress curve
       const easedProgress = Math.floor(Math.sin((rawProgress * Math.PI) / 2) * 100);
       setProgress(easedProgress);
-
-      if (easedProgress < 30) {
-        setStatusText('INITIALIZING PORTFOLIO');
-      } else if (easedProgress < 65) {
-        setStatusText('SYNCHRONIZING PROJECTS');
-      } else if (easedProgress < 95) {
-        setStatusText('FINALIZING INTERFACE');
-      } else {
-        setStatusText('WELCOME');
-      }
 
       if (rawProgress < 1) {
         requestAnimationFrame(updateCounter);
@@ -58,7 +47,7 @@ export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-6 sm:p-10 md:p-12 max-w-7xl mx-auto">
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
-          <span className="font-mono text-xs tracking-widest text-[#543244] dark:text-[#EFE7DB] font-bold uppercase">
+          <span className="font-sans text-[11px] sm:text-xs tracking-[0.22em] text-[#543244] dark:text-[#EFE7DB] font-semibold uppercase">
             CHETHARA HERATH / PORTFOLIO '26
           </span>
         </div>
@@ -66,7 +55,7 @@ export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
         {/* High-Contrast Obvious Skip Intro Button */}
         <button
           onClick={onComplete}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#543244] hover:bg-[#3C1F2F] text-[#F7F2EA] text-xs font-mono font-bold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#543244] hover:bg-[#3C1F2F] text-[#F7F2EA] text-xs font-sans font-medium tracking-wide shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
         >
           <span>Skip Intro</span>
           <span className="text-sm">→</span>
@@ -98,22 +87,12 @@ export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
         </div>
       </div>
 
-      {/* Bottom Left Status Indicator */}
-      <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-14 z-20 select-none">
-        <span className="text-[10px] font-mono tracking-widest text-neutral-400 uppercase block mb-1">
-          SYSTEM STATUS
-        </span>
-        <span className="font-mono text-xs sm:text-sm font-bold text-[#656744] dark:text-[#B5BC7E] block">
-          {statusText}
-        </span>
-      </div>
-
       {/* Bottom Right: Oversized Bold Percentage Counter (100% On-Screen & Visible) */}
       <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-14 z-20 flex items-baseline select-none">
         <span className="font-serif font-black text-6xl sm:text-7xl md:text-8xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight leading-none tabular-nums drop-shadow-xs">
           {progress}
         </span>
-        <span className="font-mono font-bold text-2xl sm:text-3xl text-[#656744] dark:text-[#B5BC7E] ml-1.5">
+        <span className="font-serif italic font-normal text-3xl sm:text-4xl text-[#656744] dark:text-[#B5BC7E] ml-1">
           %
         </span>
       </div>
