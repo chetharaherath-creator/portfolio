@@ -568,65 +568,54 @@ export const PeriodicTableSection: React.FC = () => {
                 {/* Ambient Olive Color Glow */}
                 <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none opacity-20 bg-[#656744]" />
 
-                {/* Top Inspector Header */}
-                <div className="flex items-start justify-between gap-4 mb-4 relative z-10">
-                  <div className="flex items-center gap-3">
-                    {/* Official Brand Logo Box */}
-                    <div className="w-16 h-16 rounded-2xl bg-[#F7F2EA] dark:bg-white/10 p-2.5 shadow-md border border-[#656744]/25 dark:border-white/15 flex items-center justify-center relative shrink-0">
-                      <img
-                        src={getAssetUrl(`/logos/${selectedElement.id}.svg`)}
-                        alt={selectedElement.name}
-                        className="w-10 h-10 object-contain drop-shadow-xs"
-                      />
-                      <span className="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold bg-[#656744] text-[#F7F2EA] dark:bg-[#B5BC7E] dark:text-[#1A1618] shadow-xs">
-                        #{selectedElement.atomicNum}
-                      </span>
-                    </div>
+                {/* Top Card Bar: Atomic Specimen Number & Family Tag */}
+                <div className="flex items-center justify-between gap-4 mb-3 relative z-10">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-sans font-bold bg-[#656744] text-[#F7F2EA] dark:bg-[#B5BC7E] dark:text-[#1A1618] shadow-xs tracking-wider uppercase">
+                    SPECIMEN #{selectedElement.atomicNum < 10 ? `0${selectedElement.atomicNum}` : selectedElement.atomicNum}
+                  </span>
 
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-serif text-2xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">
-                          {selectedElement.name}
-                        </h3>
-                        <span className="font-mono font-bold text-xs px-2 py-0.5 rounded-md bg-[#656744]/15 text-[#4D4F31] dark:bg-white/10 dark:text-neutral-300">
-                          {selectedElement.symbol}
-                        </span>
-                      </div>
-                      <span className="text-xs font-mono font-bold text-[#656744] dark:text-[#B5BC7E] uppercase tracking-wider block mt-0.5">
-                        {selectedElement.role}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Family Tag */}
-                  <span className="text-[10px] font-mono font-bold px-3 py-1 rounded-full uppercase tracking-wider border shrink-0 text-[#4D4F31] dark:text-[#D5DBA6] bg-[#656744]/15 border-[#656744]/35">
+                  <span className="text-[10px] font-sans font-bold px-3 py-1 rounded-full uppercase tracking-wider border shrink-0 text-[#4D4F31] dark:text-[#D5DBA6] bg-[#656744]/15 border-[#656744]/35">
                     {selectedElement.family}
                   </span>
                 </div>
 
-                {/* Mastery Bar */}
-                <div className="my-5 p-3.5 rounded-2xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-100 dark:border-white/5">
-                  <div className="flex items-center justify-between text-xs font-mono mb-1.5">
-                    <span className="text-neutral-600 dark:text-neutral-400 font-semibold uppercase">
-                      Engineering Proficiency
-                    </span>
-                    <span className="font-bold text-[#4D4F31] dark:text-[#D5DBA6]">
-                      {selectedElement.level}%
-                    </span>
-                  </div>
-                  <div className="w-full h-2 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${selectedElement.level}%` }}
-                      transition={{ duration: 0.6, ease: 'easeOut' }}
-                      className="h-full rounded-full bg-gradient-to-r from-[#656744] to-[#8E906E]"
+                {/* Center Showcase: Prominent Big Logo in the Middle */}
+                <div className="my-4 py-6 px-4 rounded-2xl bg-neutral-50/80 dark:bg-white/[0.03] border border-neutral-200/60 dark:border-white/10 flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-radial from-[#656744]/10 dark:from-white/5 to-transparent pointer-events-none" />
+
+                  {/* Big Elevated Logo Box */}
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white dark:bg-white/10 p-3.5 sm:p-4 shadow-lg border border-neutral-200/90 dark:border-white/15 flex items-center justify-center relative mb-3.5 shrink-0"
+                  >
+                    <img
+                      src={getAssetUrl(`/logos/${selectedElement.id}.svg`)}
+                      alt={selectedElement.name}
+                      className="w-full h-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105"
                     />
+                  </motion.div>
+
+                  {/* Element Name & Symbol */}
+                  <div className="flex items-center justify-center gap-2 relative z-10">
+                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                      {selectedElement.name}
+                    </h3>
+                    <span className="font-sans font-bold text-xs px-2 py-0.5 rounded-md bg-[#656744]/15 text-[#4D4F31] dark:bg-white/10 dark:text-neutral-300">
+                      {selectedElement.symbol}
+                    </span>
                   </div>
+
+                  {/* Role / Subtitle */}
+                  <span className="text-xs font-sans font-semibold text-[#656744] dark:text-[#B5BC7E] uppercase tracking-wider block mt-1 relative z-10">
+                    {selectedElement.role}
+                  </span>
                 </div>
 
                 {/* Description */}
                 <div className="mb-5">
-                  <h4 className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-bold mb-1.5">
+                  <h4 className="text-[11px] font-sans uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-bold mb-1.5">
                     TECHNICAL ARCHITECTURE
                   </h4>
                   <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-light leading-relaxed">
@@ -636,7 +625,7 @@ export const PeriodicTableSection: React.FC = () => {
 
                 {/* Applied In Real Projects */}
                 <div className="pt-4 border-t border-neutral-100 dark:border-white/5">
-                  <h4 className="text-[11px] font-mono uppercase tracking-wider text-[#656744] dark:text-[#B5BC7E] font-bold mb-2 flex items-center gap-1.5">
+                  <h4 className="text-[11px] font-sans uppercase tracking-wider text-[#656744] dark:text-[#B5BC7E] font-bold mb-2.5 flex items-center gap-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#656744] dark:text-[#B5BC7E]" />
                     <span>APPLIED IN CHETHARA'S SYSTEMS</span>
                   </h4>
@@ -644,7 +633,7 @@ export const PeriodicTableSection: React.FC = () => {
                     {selectedElement.usedIn.map((item, idx) => (
                       <span
                         key={idx}
-                        className="px-2.5 py-1 rounded-lg bg-neutral-100 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10 text-[11px] font-mono text-neutral-800 dark:text-neutral-200"
+                        className="px-2.5 py-1 rounded-lg bg-neutral-100 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10 text-xs font-sans text-neutral-800 dark:text-neutral-200 font-medium"
                       >
                         {item}
                       </span>
