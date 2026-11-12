@@ -32,10 +32,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { name: 'Projects', href: '#projects' },
+    { name: 'Stack', href: '#skills' },
     { name: 'Altrium', href: '#altrium' },
+    { name: 'Projects', href: '#projects' },
     { name: 'Design', href: '#design' },
-    { name: 'Skills', href: '#skills' },
     { name: 'Milestones', href: '#story' },
     { name: 'Contact', href: '#contact' },
   ];

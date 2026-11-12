@@ -107,6 +107,15 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   const commands: CommandItem[] = [
     // --- NAVIGATION ---
     {
+      id: 'nav-skills',
+      title: 'The Periodic Table of My Stack',
+      category: 'Navigation',
+      subtitle: '26 elemental technologies in Pantone Olive tonal spectrum',
+      icon: <Layers className="w-4 h-4 text-[#656744] dark:text-[#B5BC7E]" />,
+      keywords: ['skills', 'periodic table', 'react', 'php', 'dart', 'java', 'c#', 'aws', 'docker'],
+      action: () => scrollToSection('skills'),
+    },
+    {
       id: 'nav-altrium',
       title: 'Altrium Performance Tracker',
       category: 'Navigation',
@@ -132,15 +141,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       icon: <Compass className="w-4 h-4 text-[#656744] dark:text-[#B5BC7E]" />,
       keywords: ['design', 'hci', 'medilink', 'nielsen', 'heuristics', 'usability', 'fitts', 'hick', 'shangri-la', 'ui/ux', 'figma'],
       action: () => scrollToSection('design'),
-    },
-    {
-      id: 'nav-skills',
-      title: 'The Periodic Table of My Stack',
-      category: 'Navigation',
-      subtitle: '26 elemental technologies in Pantone Olive tonal spectrum',
-      icon: <Layers className="w-4 h-4 text-[#656744] dark:text-[#B5BC7E]" />,
-      keywords: ['skills', 'periodic table', 'react', 'php', 'dart', 'java', 'c#', 'aws', 'docker'],
-      action: () => scrollToSection('skills'),
     },
     {
       id: 'nav-story',

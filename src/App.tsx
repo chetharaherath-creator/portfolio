@@ -126,10 +126,10 @@ export function App() {
       {/* Main Sections */}
       <main className="relative">
         <Hero />
+        <PeriodicTableSection />
         <AltriumDeepDive />
         <ProjectsSection />
         <DesignShowcaseSection />
-        <PeriodicTableSection />
         <StoryAndLeadership />
         <ContactSection />
       </main>
