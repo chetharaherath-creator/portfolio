@@ -26,7 +26,7 @@ export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
       if (easedProgress < 30) {
         setStatusText('INITIALIZING PORTFOLIO');
       } else if (easedProgress < 65) {
-        setStatusText('SYNCHRONIZING PROJECTS & ASSETS');
+        setStatusText('SYNCHRONIZING PROJECTS');
       } else if (easedProgress < 95) {
         setStatusText('FINALIZING INTERFACE');
       } else {
@@ -52,40 +52,41 @@ export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
         y: '-100%',
         transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] }
       }}
-      className="fixed inset-0 z-[9999] flex flex-col justify-between p-6 sm:p-10 md:p-12 bg-[#FCFCFC] dark:bg-[#121011] select-none overflow-hidden"
+      className="fixed inset-0 z-[9999] bg-[#FCFCFC] dark:bg-[#121011] select-none overflow-hidden"
     >
-      {/* Top Bar */}
-      <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
+      {/* Top Header Bar */}
+      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-6 sm:p-10 md:p-12 max-w-7xl mx-auto">
+        <div className="flex items-center gap-2.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E] animate-pulse" />
           <span className="font-mono text-xs tracking-widest text-[#543244] dark:text-[#EFE7DB] font-bold uppercase">
             CHETHARA HERATH / PORTFOLIO '26
           </span>
         </div>
 
+        {/* High-Contrast Obvious Skip Intro Button */}
         <button
           onClick={onComplete}
-          className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-300/80 dark:border-white/10 hover:border-[#543244] text-[11px] font-mono text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#543244] hover:bg-[#3C1F2F] text-[#F7F2EA] text-xs font-mono font-bold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
         >
           <span>Skip Intro</span>
-          <span className="transition-transform group-hover:translate-x-0.5">→</span>
+          <span className="text-sm">→</span>
         </button>
       </div>
 
-      {/* Center 3D Character Walking & Puppy Animation */}
-      <div className="flex flex-col items-center justify-center my-auto relative">
-        <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] flex items-center justify-center">
-          {/* Subtle warm ambient glow behind avatar */}
-          <div className="absolute inset-0 rounded-full bg-[#F7F2EA] dark:bg-white/5 blur-2xl opacity-70 pointer-events-none" />
+      {/* Center 3D Character Walking & Puppy Animation (Prominent, Large & Clean) */}
+      <div className="absolute inset-0 flex items-center justify-center p-4 z-10 pointer-events-none">
+        <div className="w-[88vw] max-w-[560px] aspect-square flex items-center justify-center relative">
+          {/* Subtle warm ambient halo */}
+          <div className="absolute inset-4 rounded-full bg-[#F7F2EA] dark:bg-white/5 blur-3xl opacity-60 pointer-events-none" />
 
-          {/* Enhanced Video Element with WebP Fallback */}
+          {/* Enhanced Cropped HD Video */}
           <video
             autoPlay
             loop
             muted
             playsInline
             poster={getAssetUrl('/preloader-poster.jpg')}
-            className="w-full h-full object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal rounded-2xl"
+            className="w-full h-full object-contain relative z-10 mix-blend-multiply dark:mix-blend-normal"
           >
             <source src={getAssetUrl('/preloader.mp4')} type="video/mp4" />
             <img
@@ -95,45 +96,30 @@ export const SitePreloader: React.FC<SitePreloaderProps> = ({ onComplete }) => {
             />
           </video>
         </div>
-
-        {/* Floating Greeting Pill */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="mt-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-white/10 border border-neutral-200 dark:border-white/10 shadow-xs flex items-center gap-2"
-        >
-          <span className="text-sm">👋</span>
-          <span className="font-mono text-xs text-neutral-700 dark:text-neutral-300 font-medium">
-            Hello, welcome to my creative workspace
-          </span>
-        </motion.div>
       </div>
 
-      {/* Bottom Bar: Status on Left, Oversized Counter on Right */}
-      <div className="w-full max-w-7xl mx-auto flex items-end justify-between gap-6 pb-2">
-        <div className="space-y-1">
-          <span className="text-[10px] font-mono tracking-wider text-neutral-400 uppercase block">
-            STATUS
-          </span>
-          <span className="font-mono text-xs sm:text-sm font-semibold text-[#656744] dark:text-[#B5BC7E] block">
-            {statusText}
-          </span>
-        </div>
-
-        {/* Oversized Modern Typography Percentage Counter */}
-        <div className="flex items-baseline">
-          <span className="font-serif font-bold text-5xl sm:text-7xl md:text-8xl text-[#241E22] dark:text-[#F7F2EA] tracking-tighter leading-none tabular-nums">
-            {progress}
-          </span>
-          <span className="font-mono font-bold text-xl sm:text-3xl text-[#656744] dark:text-[#B5BC7E] ml-1">
-            %
-          </span>
-        </div>
+      {/* Bottom Left Status Indicator */}
+      <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-14 z-20 select-none">
+        <span className="text-[10px] font-mono tracking-widest text-neutral-400 uppercase block mb-1">
+          SYSTEM STATUS
+        </span>
+        <span className="font-mono text-xs sm:text-sm font-bold text-[#656744] dark:text-[#B5BC7E] block">
+          {statusText}
+        </span>
       </div>
 
-      {/* Bottom Progress Bar Track */}
-      <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-neutral-200/60 dark:bg-white/10">
+      {/* Bottom Right: Oversized Bold Percentage Counter (100% On-Screen & Visible) */}
+      <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-14 z-20 flex items-baseline select-none">
+        <span className="font-serif font-black text-6xl sm:text-7xl md:text-8xl text-[#241E22] dark:text-[#F7F2EA] tracking-tight leading-none tabular-nums drop-shadow-xs">
+          {progress}
+        </span>
+        <span className="font-mono font-bold text-2xl sm:text-3xl text-[#656744] dark:text-[#B5BC7E] ml-1.5">
+          %
+        </span>
+      </div>
+
+      {/* Bottom Hairline Progress Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-neutral-200/60 dark:bg-white/10 z-30">
         <motion.div
           className="h-full bg-gradient-to-r from-[#543244] via-[#656744] to-[#B5BC7E]"
           style={{ width: `${progress}%` }}
