@@ -123,10 +123,10 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-white/5 text-[#543244] dark:text-[#E8A5C5] text-xs font-mono font-semibold mb-6 border border-neutral-200/90 dark:border-white/10 shadow-2xs w-fit"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-white/5 text-[#543244] dark:text-[#E8A5C5] text-[11px] sm:text-xs font-sans tracking-[0.16em] font-semibold mb-6 border border-neutral-200/90 dark:border-white/10 shadow-2xs w-fit uppercase"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#656744] dark:bg-[#B5BC7E]" />
-              <span>SOFTWARE ENGINEERING // FULL-STACK ARCHITECTURE</span>
+              <span>Software Engineering · Creative Design · Digital Experiences</span>
             </motion.div>
 
             {/* Editorial Masked Headline Lines (Mobius Awwwards Standard) */}
@@ -142,7 +142,7 @@ export const Hero: React.FC = () => {
                   }}
                   className="block"
                 >
-                  Developing Scalable Systems
+                  Where Engineering
                 </motion.span>
               </div>
 
@@ -157,25 +157,10 @@ export const Hero: React.FC = () => {
                   }}
                   className="block"
                 >
-                  with{' '}
+                  Meets{' '}
                   <span className="italic font-medium text-[#543244] dark:text-[#E8A5C5]">
-                    Engineering Precision
+                    Imagination.
                   </span>
-                </motion.span>
-              </div>
-
-              <div className="overflow-hidden pb-1 sm:pb-1.5">
-                <motion.span
-                  initial={{ y: '115%', rotate: 1.2, opacity: 0 }}
-                  animate={{ y: '0%', rotate: 0, opacity: 1 }}
-                  transition={{
-                    duration: 0.85,
-                    delay: 0.36,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="block"
-                >
-                  & Agile Leadership.
                 </motion.span>
               </div>
             </h1>
@@ -184,10 +169,10 @@ export const Hero: React.FC = () => {
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 font-sans leading-relaxed max-w-xl font-light"
             >
-              I am <strong className="font-semibold text-[#543244] dark:text-[#F4EFEA]">Chethara Herath</strong> - a Software Engineering undergraduate at the University of Staffordshire (APIIT). I build web, mobile, and cloud systems backed by clean architecture, Agile Scrum leadership, and graphic design finesse.
+              I'm <strong className="font-semibold text-[#543244] dark:text-[#F4EFEA]">Chethara Herath</strong>, a Software Engineering undergraduate passionate about technology, creative problem-solving, and user-centred design. I enjoy transforming ideas into functional, intuitive, and visually engaging digital experiences.
             </motion.p>
 
             {/* CTAs with Magnetic Physics */}
